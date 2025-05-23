@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ঈদ স্পেশাল উপহার বক্স!</title> <!-- Slightly adjusted title -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/vmQCQz4X/619862d8b9819fbf6206db0a05dd9f5e-removebg-preview.png"> <!-- New gift box as favicon -->
+    <style>
+        /* Import Bengali Font */
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary-yellow: #ffda2c; /* Header, Prize Text, Highlights */
+            --primary-purple: #8a2be2; /* Button Text, Input BG, etc. */
+            --primary-orangered: #ff4500; /* Share Button */
+            --background-overlay: rgba(0, 0, 0, 0.7); /* Darker Overlay */
+            --container-bg: rgba(255, 255, 255, 0.12); /* Container Background - slightly less transparent */
+            --revealed-bg: #eeeeee; /* Revealed Box Background - Light Grey */
+            --revealed-text: #333333; /* Revealed Box Text - Dark Grey */
+            --ticket-closed-image: url('https://i.postimg.cc/vmQCQz4X/619862d8b9819fbf6206db0a05dd9f5e-removebg-preview.png'); /* NEW Closed Gift Box Image */
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Baloo Da 2', sans-serif;
+            color: #fff;
+            /* Use a festive background image - replace with your desired link */
+            background: url('https://i.imgur.com/P3saYvR.jpg') no-repeat center center fixed; /* Example festive background */
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            overflow-y: auto;
+            padding-bottom: 60px; /* More space at the bottom */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Overlay to darken background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--background-overlay);
+            z-index: -1;
+        }
+
+
+        .container {
+            width: 95%;
+            max-width: 650px; /* Wider max width */
+            margin-top: 40px; /* More space at top */
+            text-align: center;
+            background: var(--container-bg);
+            padding: 30px; /* Increased padding */
+            border-radius: 25px; /* More rounded corners */
+            backdrop-filter: blur(12px); /* Stronger frosted glass */
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+        }
+
+         /* Header Section */
+         .title-section {
+             margin-bottom: 30px; /* Increased margin */
+         }
+
+        /* Title Animation Styles */
+        .title-section h1 {
+            font-size: 4em; /* Even larger font size */
+            margin: 0 0 10px 0; /* Adjusted margin */
+            text-shadow:
+                0 0 20px var(--primary-yellow),   /* Inner Yellow Glow */
+                0 0 35px var(--primary-yellow),
+                0 0 50px var(--primary-purple),  /* Outer Purple Glow */
+                0 0 70px var(--primary-purple),
+                0 0 80px var(--primary-purple),
+                4px 4px 8px rgba(0, 0, 0, 0.7);   /* Text Shadow */
+            color: #fff;
+            animation: neon-title 2s ease-in-out infinite alternate; /* Slower animation */
+        }
+
+         /* Keyframes for neon glow on title */
+         @keyframes neon-title {
+             from {
+                 text-shadow:
+                     0 0 10px var(--primary-yellow),
+                     0 0 20px var(--primary-yellow),
+                     0 0 30px var(--primary-purple),
+                     0 0 45px var(--primary-purple),
+                     0 0 55px var(--primary-purple),
+                     3px 3px 6px rgba(0, 0, 0, 0.6);
+             }
+             to {
+                 text-shadow:
+                     0 0 20px var(--primary-yellow),
+                     0 0 35px var(--primary-yellow),
+                     0 0 50px var(--primary-purple),
+                     0 0 70px var(--primary-purple),
+                     0 0 80px var(--primary-purple),
+                     4px 4px 8px rgba(0, 0, 0, 0.7);
+             }
+         }
+
+        .title-section h2 {
+             font-size: 2.8em; /* Even larger font size */
+             margin: 0;
+             color: var(--primary-yellow);
+             text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+             animation: pulse-subtitle 3s ease-in-out infinite alternate; /* Slower animation */
+        }
+
+         /* Keyframes for subtitle pulse */
+         @keyframes pulse-subtitle {
+             from {
+                 transform: scale(1);
+                 opacity: 0.9;
+             }
+             to {
+                 transform: scale(1.02);
+                 opacity: 1;
+             }
+         }
+
+
+        /* Grand Prize Animation Style */
+        .grand-prize {
+            font-size: 2em; /* Larger font size */
+            color: var(--primary-orangered);
+            margin-top: 20px; /* Increased margin */
+            margin-bottom: 35px; /* Increased margin */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+            animation: shake 0.8s infinite alternate;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-5px) rotate(-2deg); } /* More intense shake */
+            50% { transform: translateX(5px) rotate(2deg); }
+            75% { transform: translateX(-5px) rotate(-2deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
+
+        .tickets-grid {
+            display: grid;
+            /* Auto fit columns, min size 100px. Will adapt for 12 items */
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px; /* Increased space between tickets */
+            margin-bottom: 30px;
+        }
+
+        .ticket {
+            background-image: var(--ticket-closed-image);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: transparent;
+            border: none;
+            border-radius: 12px; /* More rounded */
+            padding: 0;
+            aspect-ratio: 1 / 1; /* Keep square */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+
+            /* Transition for opening animation effect */
+             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease,
+                         opacity 0.3s ease, background-color 0.6s ease; /* Slightly slower background transition */
+        }
+
+        /* Hide number and content initially for closed box look */
+         .ticket .ticket-number,
+         .ticket .ticket-content {
+            opacity: 0;
+            transition: opacity 0.4s ease; /* Slightly slower opacity transition */
+         }
+
+
+        /* Hover effect */
+        .ticket:not(.revealed):not(.disabled):hover {
+            transform: scale(1.1) rotate(4deg); /* More pronounced hover */
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
+        }
+
+        /* Disabled state */
+        .ticket.disabled:not(.revealed) {
+            opacity: 0.5; /* Slightly more faded */
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+         /* Revealed State */
+         .ticket.revealed {
+            background-image: none;
+            background-color: var(--revealed-bg);
+            border: 3px solid #b0b0b0;
+            color: var(--revealed-text);
+            cursor: default;
+            transform: none;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            animation: revealed-entry 0.5s ease-out; /* Slightly slower animation */
+         }
+
+         @keyframes revealed-entry {
+             from { transform: scale(0.8); opacity: 0; }
+             to { transform: scale(1); opacity: 1; }
+         }
+
+
+         .ticket.revealed .ticket-number {
+             background-color: #b0b0b0;
+             color: var(--revealed-text);
+             opacity: 1;
+             position: static;
+             margin: 5px;
+             font-size: 0.9em;
+             align-self: flex-start; /* Align to top-left within flex container */
+         }
+
+
+         .ticket.revealed .ticket-content {
+            font-size: 1.3em; /* Larger size for prize text */
+            color: var(--revealed-text);
+            font-weight: bold;
+            position: static;
+            transform: none;
+            opacity: 1;
+             padding: 10px;
+             width: auto;
+             flex-grow: 1;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             overflow-wrap: break-word;
+             word-break: break-word;
+             text-shadow: none;
+         }
+
+        /* Initial Question mark state (hidden) */
+         .ticket .ticket-content {
+             font-size: 2.5em; /* Larger size of question mark */
+             color: var(--primary-purple);
+             font-weight: bold;
+             text-shadow: 0 0 10px rgba(255,255,255,0.9); /* Stronger white glow */
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             z-index: 2;
+             width: 100%;
+         }
+
+         /* Styles for the actual ticket number element */
+         .ticket .ticket-number {
+             position: absolute;
+             top: 8%; /* Position within the gift box image */
+             left: 8%;
+             background-color: var(--primary-purple);
+             color: var(--primary-yellow);
+             font-size: 0.9em;
+             font-weight: bold;
+             padding: 2px 6px;
+             border-radius: 5px;
+             z-index: 3;
+              transition: opacity 0.4s ease; /* Match content opacity transition */
+         }
+
+
+        .pick-text {
+            font-size: 1.5em; /* Larger font size */
+            margin-top: 20px;
+            color: var(--primary-yellow);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+            margin-bottom: 25px; /* Increased margin */
+        }
+
+        .available-tickets {
+            margin-bottom: 20px; /* Increased margin */
+            font-size: 1.5em; /* Larger font size */
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
+        .available-tickets span {
+            font-weight: bold;
+            color: var(--primary-yellow);
+             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add shadow to numbers */
+        }
+
+
+        .info-section {
+            margin-top: 30px; /* Increased margin */
+            padding: 25px; /* Increased padding */
+            background-color: rgba(138, 43, 226, 0.85); /* Slightly less transparent purple */
+            border-radius: 18px; /* More rounded corners */
+            text-align: left;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-section h3 {
+            text-align: center;
+            margin-top: 0;
+            color: var(--primary-yellow);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px; /* Increased margin */
+             font-size: 1.6em; /* Larger font size */
+        }
+
+        .info-section p {
+            margin-bottom: 12px; /* Increased margin */
+            line-height: 1.6;
+            font-size: 1.05em; /* Slightly larger font size */
+        }
+
+        .info-section ul {
+            padding-left: 35px; /* Increased padding */
+            margin-bottom: 18px; /* Increased margin */
+            font-size: 1.05em; /* Slightly larger font size */
+        }
+         .info-section li {
+             margin-bottom: 10px; /* Increased margin */
+         }
+
+        .share-button {
+            display: inline-block;
+            margin: 35px auto; /* Increased margin */
+            padding: 18px 40px; /* Increased padding */
+            background-color: var(--primary-orangered);
+            color: #fff;
+            font-size: 1.4em; /* Larger font size */
+            font-weight: bold;
+            border: none;
+            border-radius: 40px; /* More rounded */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+        }
+
+        .share-button:hover {
+            background-color: #e63e00;
+            transform: translateY(-5px); /* Moves up more */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
+        }
+         .share-button:active {
+             transform: translateY(0);
+             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+         }
+
+        .referral-status {
+            margin-top: 20px; /* Increased margin */
+            text-align: center;
+            font-size: 1.3em; /* Larger font size */
+            color: var(--primary-yellow);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            margin-bottom: 25px; /* Increased margin */
+        }
+        .referral-status span {
+            font-weight: bold;
+            color: #fff;
+             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .number-input-section {
+            margin-top: 35px; /* Increased margin */
+            padding: 25px; /* Increased padding */
+            background-color: rgba(138, 43, 226, 0.85); /* Match info section BG */
+            border-radius: 18px; /* Match info section border-radius */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+             transition: all 0.6s ease-in-out; /* Slower transition */
+             opacity: 1;
+             max-height: 600px; /* Increased max-height */
+             overflow: hidden;
+        }
+
+        .number-input-section.hidden {
+            opacity: 0;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+             transition: opacity 0.6s ease-in-out, max-height 0.6s ease-in-out,
+                         padding-top 0.6s ease-in-out, padding-bottom 0.6s ease-in-out,
+                         margin-top 0.6s ease-in-out, margin-bottom 0.6s ease-in-out;
+        }
+
+
+        .number-input-section h4 {
+            margin-top: 0;
+            color: var(--primary-yellow);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+             margin-bottom: 15px; /* Increased margin */
+             font-size: 1.5em; /* Larger font size */
+        }
+
+        .number-input-section p {
+             font-size: 1.05em; /* Slightly larger */
+             margin-bottom: 20px; /* Increased margin */
+             color: #ddd; /* Lighter grey */
+             text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        .number-input-section .input-group {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             gap: 20px; /* Increased space */
+        }
+
+        .number-input-section input[type="tel"] {
+            flex-grow: 1;
+            padding: 16px; /* Increased padding */
+            font-size: 1.2em; /* Larger font size */
+            border: none;
+            border-radius: 10px; /* More rounded */
+            background-color: rgba(255, 255, 255, 0.98); /* Almost opaque white */
+            color: #333;
+            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25); /* Deeper inset shadow */
+            transition: box-shadow 0.3s ease;
+        }
+         .number-input-section input[type="tel"]:focus {
+             outline: none;
+             box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 0 12px rgba(50, 205, 50, 0.9); /* Stronger focus glow */
+         }
+
+         .number-input-section button {
+             padding: 16px 35px; /* Increased padding */
+             font-size: 1.2em; /* Larger font size */
+             background-color: #32cd32; /* LimeGreen */
+             color: white;
+             border: none;
+             border-radius: 10px; /* More rounded */
+             cursor: pointer;
+             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+         }
+          .number-input-section button:hover {
+              background-color: #228b22; /* ForestGreen */
+               transform: translateY(-3px); /* Moves up slightly */
+              box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+          }
+           .number-input-section button:active {
+              transform: translateY(0);
+              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+           }
+
+        /* Responsive adjustments (Mobile Friendly) */
+        @media (max-width: 600px) {
+             .container {
+                 margin-top: 25px;
+                 padding: 20px;
+                 border-radius: 20px;
+             }
+
+             .title-section h1 {
+                 font-size: 3em;
+                  text-shadow:
+                    0 0 12px var(--primary-yellow),
+                    0 0 25px var(--primary-yellow),
+                    0 0 35px var(--primary-purple),
+                    0 0 45px var(--primary-purple),
+                    2px 2px 5px rgba(0, 0, 0, 0.6);
+             }
+              @keyframes neon-title { /* Mobile keyframes */
+                  from {
+                       text-shadow:
+                        0 0 6px var(--primary-yellow),
+                        0 0 12px var(--primary-yellow),
+                        0 0 20px var(--primary-purple),
+                        0 0 25px var(--primary-purple),
+                        1px 1px 4px rgba(0, 0, 0, 0.5);
+                  }
+                  to {
+                      text-shadow:
+                        0 0 12px var(--primary-yellow),
+                        0 0 25px var(--primary-yellow),
+                        0 0 35px var(--primary-purple),
+                        0 0 45px var(--primary-purple),
+                        2px 2px 5px rgba(0, 0, 0, 0.6);
+                  }
+              }
+
+
+             .title-section h2 {
+                 font-size: 2em;
+             }
+
+             .grand-prize {
+                 font-size: 1.6em;
+                 margin-bottom: 30px;
+             }
+
+            .tickets-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Allows 3 columns on many mobile screens */
+                gap: 15px;
+            }
+            .ticket {
+                 aspect-ratio: 1;
+                 border-radius: 10px;
+                 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            }
+
+            .ticket .ticket-number {
+                 font-size: 0.8em;
+                 padding: 1px 5px;
+                 top: 6%;
+                 left: 6%;
+             }
+
+             .ticket .ticket-content {
+                 font-size: 2em; /* Size of question mark */
+                 text-shadow: 0 0 8px rgba(255,255,255,0.8);
+             }
+             .ticket.revealed .ticket-content {
+                 font-size: 0.95em; /* Size of prize text */
+                 padding: 6px;
+             }
+
+
+            .pick-text, .available-tickets, .referral-status {
+                 font-size: 1.3em;
+            }
+             .info-section p, .info-section ul {
+                 font-size: 1em;
+                 line-height: 1.5;
+             }
+             .info-section {
+                 padding: 18px;
+                 border-radius: 15px;
+             }
+             .info-section h3 {
+                  font-size: 1.4em;
+                 margin-bottom: 15px;
+             }
+             .info-section p, .info-section ul {
+                 margin-bottom: 10px;
+             }
+
+
+            .share-button {
+                 padding: 14px 30px;
+                 font-size: 1.3em;
+                 margin: 30px auto;
+            }
+
+             .number-input-section {
+                 padding: 20px;
+                 border-radius: 15px;
+             }
+             .number-input-section h4 {
+                  font-size: 1.3em;
+                  margin-bottom: 10px;
+             }
+              .number-input-section p {
+                  font-size: 0.95em;
+                  margin-bottom: 15px;
+              }
+
+             .number-input-section .input-group {
+                 flex-direction: column;
+                 gap: 15px;
+             }
+
+              .number-input-section input[type="tel"],
+              .number-input-section button {
+                 font-size: 1.1em;
+                 width: 100%;
+                 padding: 12px;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title-section">
+            <h1>ঈদ স্পেশাল!</h1>
+            <h2>উপহার বক্স অফার!</h2> <!-- Changed subtitle again -->
+        </div>
+
+        <div class="grand-prize">
+            গ্র্যান্ড প্রাইজ: অ্যান্ড্রয়েড ফোন!
+        </div>
+
+        <div class="available-tickets">
+            আপনার উপহার বক্স সংখ্যা: <span id="availableTicketsCount">0</span>
+        </div>
+
+        <div class="tickets-grid" id="ticketsGrid">
+            <!-- Gift boxes will be generated here by JavaScript -->
+        </div>
+
+        <p class="pick-text">
+            একটি উপহার বক্স খুলুন!
+        </p>
+
+        <div class="info-section">
+            <h3>অফারগুলো লুফে নিন!</h3>
+            <p>শেয়ার করার মাধ্যমে বেশি উপহার বক্স উপার্জন করতে পারবেন। সামনে ঈদ তাই বেশি বেশি করে শেয়ার করে জিতে নিন আকর্ষণীয় উপহার!</p>
+            <p>বন্ধুদের ইনভাইট করে ফ্রি উপহার বক্স পান (যতজন ইনভাইট করবেন, সেই অনুযায়ী মোট বক্স পাবেন):</p>
+            <ul>
+                <li>৫ জন বন্ধুকে ইনভাইট করলে: ১টি বক্স</li>
+                <li>১০ জন বন্ধুকে ইনভাইট করলে: মোট ৩টি বক্স (আগের ১টি + নতুন ২টি)</li>
+                <li>২০ জন বন্ধুকে ইনভাইট করলে: মোট ৮টি বক্স (আগের ৩টি + নতুন ৫টি)</li>
+            </ul>
+             <p>২০ জন ইনভাইট সম্পন্ন হলে গ্র্যান্ড প্রাইজ জেতার সুযোগ আনলক হবে!</p>
+        </div>
+
+        <button class="share-button" id="shareButton">
+            শেয়ার করুন এবং উপহার বক্স জিতুন!
+        </button>
+
+         <div class="referral-status">
+             আপনার ইনভাইট সংখ্যা: <span id="referralCountDisplay">0</span> জন
+         </div>
+
+         <!-- Referral Goal Text -->
+         <div class="referral-status" id="referralGoalText">
+             <!-- Referral goal text will be updated by JS -->
+         </div>
+
+
+        <div class="number-input-section hidden" id="numberInputSection">
+            <h4>গ্র্যান্ড প্রাইজ গ্রহণ করার সুযোগ আনলক হয়েছে!</h4>
+            <p>(২০ জন বন্ধুকে ইনভাইট করার পর)</p>
+            <div class="input-group">
+                <input type="tel" id="phoneNumber" placeholder="আপনার ফোন নাম্বার দিন" maxlength="11">
+                <button id="submitNumber">জমা দিন</button>
+            </div>
+        </div>
+
+    </div> <!-- .container -->
+
+    <script>
+        const ticketsGrid = document.getElementById('ticketsGrid');
+        const availableTicketsCountSpan = document.getElementById('availableTicketsCount');
+        const shareButton = document.getElementById('shareButton');
+        const referralCountDisplaySpan = document.getElementById('referralCountDisplay');
+        const referralGoalTextDiv = document.getElementById('referralGoalText');
+        const numberInputSection = document.getElementById('numberInputSection');
+        const phoneNumberInput = document.getElementById('phoneNumber');
+        const submitNumberButton = document.getElementById('submitNumber');
+
+        // --- Local Storage Keys (Updated versioning for 12 boxes and new image) ---
+        const STORAGE_LAST_DRAW_DATE = 'eidGiftDrawLastDate_v4';
+        const STORAGE_DAILY_DRAW_DONE = 'eidGiftDailyDrawDone_v4';
+        const STORAGE_REFERRAL_COUNT = 'eidGiftReferralCount_v4';
+        const STORAGE_AVAILABLE_TICKETS = 'eidGiftAvailableBoxes_v4';
+        const STORAGE_REVEALED_TICKETS = 'eidGiftRevealedBoxes_v4';
+        const STORAGE_REFERRAL_TICKETS_EARNED_TOTAL = 'eidGiftReferralBoxesEarnedTotal_v4';
+        const STORAGE_PHONE_NUMBER_SUBMITTED = 'eidGiftPhoneNumberSubmitted_v4';
+
+
+        // --- Game State Variables ---
+        let dailyDrawDone = false;
+        let referralCount = 0;
+        let availableTickets = 0;
+        let revealedTickets = [];
+        let referralTicketsEarnedTotal = 0;
+
+
+        // --- Prizes (Updated for 12 boxes) ---
+        // Index corresponds to box number 0-11
+        const prizes = [
+            "খালি",         // Box 1 (Index 0)
+            "১ জিবি ডাটা",  // Box 2 (Index 1)
+            "খালি",         // Box 3 (Index 2)
+            "৫০০ টাকা",     // Box 4 (Index 3)
+            "খালি",         // Box 5 (Index 4)
+            "১ জিবি ডাটা",  // Box 6 (Index 5)
+            "খালি",         // Box 7 (Index 6)
+            "১০০০ টাকা",    // Box 8 (Index 7)
+            "খালি",        // Box 9 (Index 8)
+            "অ্যান্ড্রয়েড ফোন", // Box 10 (Index 9) - Grand Prize (Remains at index 9)
+            "খালি",        // Box 11 (Index 10) - Added prize
+            "৫০০ টাকা"     // Box 12 (Index 11) - Added prize
+        ];
+        const NUM_TICKETS = prizes.length; // Automatically becomes 12
+
+        // --- Referral Tiers (Cumulative Total Boxes Earned) ---
+        const referralTicketTotals = {
+            5: 1,
+            10: 3,
+            20: 8
+        };
+        const REFERRAL_GOAL_FOR_PHONE_INPUT = 20;
+
+
+        // --- Helper Functions ---
+
+        // Get today's date in YYYY-MM-DD format
+        function getTodayDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+         // Calculate total boxes earned from referrals based on current count
+        function calculateReferralTicketsEarned(count) {
+             let totalEarned = 0;
+             if (count >= 5) totalEarned = Math.max(totalEarned, referralTicketTotals[5] || 0);
+             if (count >= 10) totalEarned = Math.max(totalEarned, referralTicketTotals[10] || 0);
+             if (count >= 20) totalEarned = Math.max(totalEarned, referralTicketTotals[20] || 0);
+             return totalEarned;
+        }
+
+
+        // Save game state to localStorage
+        function saveGameState() {
+            localStorage.setItem(STORAGE_DAILY_DRAW_DONE, dailyDrawDone);
+            localStorage.setItem(STORAGE_LAST_DRAW_DATE, getTodayDate());
+            localStorage.setItem(STORAGE_REFERRAL_COUNT, referralCount);
+            localStorage.setItem(STORAGE_AVAILABLE_TICKETS, availableTickets);
+            localStorage.setItem(STORAGE_REVEALED_TICKETS, JSON.stringify(revealedTickets));
+            localStorage.setItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL, referralTicketsEarnedTotal);
+        }
+
+        // Load game state from localStorage
+        function loadGameState() {
+            const today = getTodayDate();
+            const lastDrawDate = localStorage.getItem(STORAGE_LAST_DRAW_DATE);
+
+            // Load basic counts and revealed status
+            referralCount = parseInt(localStorage.getItem(STORAGE_REFERRAL_COUNT) || '0');
+            availableTickets = parseInt(localStorage.getItem(STORAGE_AVAILABLE_TICKETS) || '0');
+            revealedTickets = JSON.parse(localStorage.getItem(STORAGE_REVEALED_TICKETS) || '[]');
+            referralTicketsEarnedTotal = parseInt(localStorage.getItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL) || '0');
+
+
+            // Check for new day OR if this is the very first visit
+            if (lastDrawDate !== today) {
+                // New day
+                dailyDrawDone = false; // Allow daily box for today
+
+                // Grant daily box ONLY if not already granted for today
+                 if (localStorage.getItem(STORAGE_DAILY_DRAW_DONE) !== 'true' || lastDrawDate === null) {
+                     availableTickets += 1; // Grant 1 daily box
+                     dailyDrawDone = true; // Mark as done for today
+                 } else {
+                     // If somehow STORAGE_DAILY_DRAW_DONE is true for today but lastDrawDate is not today (edge case),
+                     // ensure dailyDrawDone state is accurate.
+                     dailyDrawDone = true;
+                 }
+
+                 // Revealed tickets persist across days, no reset needed here.
+                 // Important: Ensure revealedTickets only contains valid indices (0 to NUM_TICKETS-1)
+                 revealedTickets = revealedTickets.filter(index => index >= 0 && index < NUM_TICKETS);
+
+
+            } else {
+                // Same day - Load state as is
+                dailyDrawDone = localStorage.getItem(STORAGE_DAILY_DRAW_DONE) === 'true';
+                 // availableTickets, referralCount, revealedTickets, referralTicketsEarnedTotal already loaded
+                 // Ensure revealedTickets only contains valid indices (0 to NUM_TICKETS-1)
+                 revealedTickets = revealedTickets.filter(index => index >= 0 && index < NUM_TICKETS);
+            }
+
+             // --- Consistency Checks / Adjustments on Load ---
+
+             // Ensure boxes earned from referrals match the current referral count
+             const targetReferralTicketsTotal = calculateReferralTicketsEarned(referralCount);
+
+             // If the user's referral count means they *should* have earned more tickets than credited:
+             if (targetReferralTicketsTotal > referralTicketsEarnedTotal) {
+                 const newReferralTickets = targetReferralTicketsTotal - referralTicketsEarnedTotal;
+                 availableTickets += newReferralTickets; // Add the newly earned referral tickets
+                 referralTicketsEarnedTotal = targetReferralTicketsTotal; // Update the total credited
+                 // This update will be saved later by saveGameState if triggered.
+             }
+
+            // Ensure availableTickets doesn't go below 0
+            if (availableTickets < 0) availableTickets = 0;
+
+             // Save the potentially updated state (e.g., if new day or referral tickets were credited)
+            saveGameState();
+        }
+
+        // Update UI elements
+        function updateUI() {
+            availableTicketsCountSpan.textContent = availableTickets;
+            referralCountDisplaySpan.textContent = referralCount;
+
+             // Update referral goal text
+             let nextGoal = null;
+             let ticketsAtNextGoal = 0;
+             const currentEarnedTickets = calculateReferralTicketsEarned(referralCount); // Calculate based on current count
+
+             if (referralCount < 5) {
+                 nextGoal = 5;
+                 ticketsAtNextGoal = referralTicketTotals[5] || 0;
+             } else if (referralCount < 10) {
+                 nextGoal = 10;
+                 ticketsAtNextGoal = referralTicketTotals[10] || 0;
+             } else if (referralCount < 20) {
+                 nextGoal = 20;
+                 ticketsAtNextGoal = referralTicketTotals[20] || 0;
+             }
+
+             if (nextGoal !== null) {
+                  const ticketsToEarnAtNextGoal = ticketsAtNextGoal - currentEarnedTickets;
+                  // Only show positive earnings difference or the total at the goal
+                  if (ticketsToEarnAtNextGoal > 0) {
+                       referralGoalTextDiv.textContent = `আর ${nextGoal - referralCount} জন ইনভাইট করলে মোট ${ticketsAtNextGoal}টি উপহার বক্স পাবেন!`;
+                  } else {
+                       // If ticketsEarnedTotal already matches or exceeds the goal's total (edge case)
+                       referralGoalTextDiv.textContent = `আর ${nextGoal - referralCount} জন ইনভাইট করলে আপনি পরবর্তী পুরস্কার পাবেন!`;
+                  }
+
+             } else {
+                 referralGoalTextDiv.textContent = `অভিনন্দন! আপনার ইনভাইট লক্ষ্য পূরণ হয়েছে।`;
+             }
+
+
+            // Update ticket grid appearance
+            renderTickets();
+
+            // Check if number input should be unlocked
+            const phoneNumberSubmitted = localStorage.getItem(STORAGE_PHONE_NUMBER_SUBMITTED) === 'true';
+
+            if (referralCount >= REFERRAL_GOAL_FOR_PHONE_INPUT) {
+                 numberInputSection.classList.remove('hidden');
+                 // If already submitted, update UI elements
+                 if (phoneNumberSubmitted) {
+                     phoneNumberInput.disabled = true;
+                     submitNumberButton.disabled = true;
+                      // Add a submitted message if not already there
+                     if (!document.getElementById('submittedMessage')) {
+                         const submittedMessage = document.createElement('p');
+                         submittedMessage.id = 'submittedMessage'; // Add ID to avoid duplicates
+                         submittedMessage.style.color = '#ccffcc';
+                         submittedMessage.textContent = 'আপনার নাম্বার ইতিমধ্যেই জমা নেওয়া হয়েছে। আপনাকে শীঘ্রই যোগাযোগ করা হবে!';
+                         numberInputSection.appendChild(submittedMessage);
+                     }
+                 } else {
+                      // Ensure they are enabled if goal reached but not submitted
+                     phoneNumberInput.disabled = false;
+                     submitNumberButton.disabled = false;
+                     // Remove submitted message if it exists
+                     const existingMsg = document.getElementById('submittedMessage');
+                     if(existingMsg) existingMsg.remove();
+                 }
+
+
+            } else {
+                numberInputSection.classList.add('hidden');
+            }
+        }
+
+        // Render the ticket grid
+        function renderTickets() {
+            ticketsGrid.innerHTML = ''; // Clear current grid
+            for (let i = 0; i < NUM_TICKETS; i++) {
+                const ticket = document.createElement('div');
+                ticket.classList.add('ticket');
+                ticket.dataset.index = i; // Store original index
+
+                // Add Ticket Number
+                const ticketNumber = document.createElement('div');
+                ticketNumber.classList.add('ticket-number');
+                ticketNumber.textContent = i + 1; // Display box number (1-based)
+                ticket.appendChild(ticketNumber);
+
+                const content = document.createElement('div');
+                content.classList.add('ticket-content');
+
+
+                const isRevealed = revealedTickets.includes(i);
+
+                if (isRevealed) {
+                    // If already revealed, set the revealed state immediately
+                    content.textContent = prizes[i]; // Show prize
+                    ticket.classList.add('revealed');
+                    ticket.classList.add('disabled'); // Cannot click revealed boxes
+                    // Make number and content visible immediately
+                    ticketNumber.style.opacity = 1;
+                    content.style.opacity = 1;
+
+                } else {
+                    // If not revealed, show '?' visually (will be hidden by default CSS initially)
+                    content.textContent = '?';
+                    // Add click handler only if not revealed
+                    ticket.addEventListener('click', handleTicketClick);
+
+                    // Disable click if no boxes are available
+                    if (availableTickets <= 0) {
+                        ticket.classList.add('disabled');
+                    }
+                     // Number and content opacity handled by default CSS (opacity: 0)
+
+                }
+
+                ticket.appendChild(content); // Content is appended after number
+
+                ticketsGrid.appendChild(ticket);
+            }
+        }
+
+        // --- Event Handlers ---
+
+        function handleTicketClick(event) {
+            const clickedTicket = event.currentTarget;
+            const ticketIndex = parseInt(clickedTicket.dataset.index);
+
+            // Prevent clicking if disabled or already revealed
+            if (clickedTicket.classList.contains('disabled') || clickedTicket.classList.contains('revealed')) {
+                 if (availableTickets <= 0 && !clickedTicket.classList.contains('revealed')) {
+                      // Only show alert if the reason for being disabled is lack of tickets
+                      alert("আপনার কাছে পর্যাপ্ত উপহার বক্স নেই! আরও বক্স জিততে শেয়ার করুন।");
+                 }
+                 return;
+            }
+
+             // Add disabled class immediately to prevent rapid clicks
+             clickedTicket.classList.add('disabled');
+             clickedTicket.removeEventListener('click', handleTicketClick); // Prevent multiple clicks
+
+            // Use a delay to show the opening transition before revealing the prize and updating state
+            const revealDelay = 1000; // Slightly longer delay for transition effect
+
+            // Add a temporary class for a custom opening animation if needed
+            // clickedTicket.classList.add('opening'); // Example: add a class to trigger CSS animation
+
+            setTimeout(() => {
+                // --- State Updates AFTER delay ---
+                // Decrement available tickets
+                availableTickets--;
+                availableTickets = Math.max(0, availableTickets); // Ensure it doesn't go below 0
+
+                // Add to revealed tickets list
+                if (!revealedTickets.includes(ticketIndex)) {
+                     revealedTickets.push(ticketIndex);
+                }
+
+                // Save state
+                saveGameState();
+
+                // Update UI (this will re-render the specific ticket with the 'revealed' class)
+                updateUI();
+
+                // --- Show Prize Message AFTER UI updates ---
+                const prize = prizes[ticketIndex];
+                setTimeout(() => { // Small delay after UI update/re-render
+                     if (prize === "খালি") {
+                         alert("দুঃখিত! এই উপহার বক্সে কিছু নেই। আবার চেষ্টা করুন!");
+                     } else {
+                         alert(`অভিনন্দন! আপনি জিতেছেন: ${prize}!`);
+                     }
+                }, 100);
+
+
+            }, revealDelay); // Wait for the specified delay
+
+        }
+
+        async function handleShare() {
+             // Load total referral boxes earned *before* this click
+             let referralTicketsEarnedTotalBefore = parseInt(localStorage.getItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL) || '0');
+             referralTicketsEarnedTotalBefore = Math.max(referralTicketsEarnedTotalBefore, calculateReferralTicketsEarned(referralCount)); // Ensure loaded is at least what current count implies
+
+
+             const oldReferralCount = referralCount;
+             referralCount += 1; // Simulate increment by 1 for each share attempt
+
+             // Calculate the total boxes earned *after* this increment based on the new referral count
+             const referralTicketsEarnedTotalAfter = calculateReferralTicketsEarned(referralCount);
+
+             // Determine how many *new* referral boxes were just earned in this click based on tier progression
+             const ticketsEarnedThisClick = referralTicketsEarnedTotalAfter - referralTicketsEarnedTotalBefore;
+
+             // Update the global referralTicketsEarnedTotal variable
+             referralTicketsEarnedTotal = referralTicketsEarnedTotalAfter;
+
+             // Add newly earned tickets to available count
+             availableTickets += ticketsEarnedThisClick;
+
+
+             // Save the main state (referralCount, availableTickets, referralTicketsEarnedTotal)
+             saveGameState();
+
+             // Update UI to reflect new counts and potential number input unlock
+             updateUI();
+
+
+            // Attempt to use Web Share API
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'ঈদ স্পেশাল উপহার বক্স!', // Updated title
+                        text: 'আমি এই ঈদ স্পেশাল উপহার বক্স অফার থেকে দারুণ সব পুরস্কার জিতে নিচ্ছি! তুমিও খেলো আর জিতে নাও!\n[এখানে আপনার গেমের লিংক দিন]', // Updated text
+                        url: window.location.href // Share the current page URL
+                    });
+                    console.log('Content shared successfully');
+                    // Referral count increment and ticket logic already ran above
+                } catch (error) {
+                    console.error('Error sharing:', error);
+                    // User cancelled or sharing failed.
+                }
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const gameUrl = window.location.href;
+                navigator.clipboard.writeText(gameUrl).then(() => {
+                     alert(`শেয়ার অপশন উপলব্ধ নয়। লিংক কপি করা হয়েছে:\n${gameUrl}\nএটি আপনার বন্ধুদের সাথে শেয়ার করুন!`);
+                }).catch(err => {
+                     console.error('Could not copy text: ', err);
+                     alert(`শেয়ার অপশন উপলব্ধ নয়। এই লিংকটি কপি করে শেয়ার করুন:\n${gameUrl}`);
+                });
+
+            }
+
+             // Show message about box earnings and next goal AFTER share attempt
+             setTimeout(() => {
+                 if (ticketsEarnedThisClick > 0) {
+                      alert(`অভিনন্দন! শেয়ার করার জন্য আপনি ${ticketsEarnedThisClick}টি ফ্রি উপহার বক্স পেয়েছেন!`);
+                 } else {
+                     // No new tier reached in this click
+                     if (referralCount < REFERRAL_GOAL_FOR_PHONE_INPUT) {
+                          let nextGoal = 0;
+                          if (referralCount < 5) nextGoal = 5;
+                          else if (referralCount < 10) nextGoal = 10;
+                          else if (referralCount < 20) nextGoal = 20;
+
+                          alert(`শেয়ার করার জন্য ধন্যবাদ! আর মাত্র ${nextGoal - referralCount} জন ইনভাইট করলে আরও উপহার বক্স পাবেন।`);
+                     } else {
+                         alert(`শেয়ার করার জন্য ধন্যবাদ! আপনার ইনভাইট লক্ষ্য পূরণ হয়েছে।`);
+                     }
+                 }
+             }, 200); // Small delay after share prompt finishes
+        }
+
+        function handleSubmitNumber() {
+            const phoneNumber = phoneNumberInput.value.trim();
+            // Basic validation for Bangladesh numbers (11 digits starting with 01)
+            if (!/^01\d{9}$/.test(phoneNumber)) {
+                alert("একটি সঠিক ফোন নাম্বার দিন (যেমন: ০১৮১২৩৪৫৬৭৮)।");
+                return;
+            }
+
+            // Simulate submission success
+            // In a real application, send this number to your server using fetch().
+
+            alert(`আপনার নাম্বার (${phoneNumber}) জমা নেওয়া হয়েছে। আপনাকে শীঘ্রই যোগাযোগ করা হবে! (এটি একটি ডেমো)`);
+
+            // Mark as submitted in localStorage to prevent resubmission in simulation
+            localStorage.setItem(STORAGE_PHONE_NUMBER_SUBMITTED, 'true');
+
+            // Disable input and button immediately
+            phoneNumberInput.disabled = true;
+            submitNumberButton.disabled = true;
+
+            // Update UI to show submitted message
+            updateUI();
+
+        }
+
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGameState(); // Load state on page load
+            updateUI(); // Update UI based on loaded state
+
+            // Add event listeners
+            shareButton.addEventListener('click', handleShare);
+            submitNumberButton.addEventListener('click', handleSubmitNumber);
+
+             // Initial check and disable phone input if already submitted in simulation
+             // This is handled inside updateUI after loadGameState
+        });
+
+    </script>
+
+</body>
+</html>
