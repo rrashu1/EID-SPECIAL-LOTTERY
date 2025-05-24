@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ঈদ স্পেশাল উপহার বক্স!</title> <!-- Slightly adjusted title -->
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/vmQCQz4X/619862d8b9819fbf6206db0a05dd9f5e-removebg-preview.png"> <!-- New gift box as favicon -->
+    <title>ঈদ স্পেশাল উপহার বক্স!</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/vmQCQz4X/619862d8b9819fbf6206db0a05dd9f5e-removebg-preview.png">
     <style>
         /* Import Bengali Font */
         @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap');
@@ -13,13 +13,13 @@
             --primary-yellow: #ffda2c; /* Header, Prize Text, Highlights */
             --primary-purple: #8a2be2; /* Button Text, Input BG, etc. */
             --primary-orangered: #ff4500; /* Share Button */
+            --primary-green: #32cd32; /* Submit Button, Withdrawal Button */
             --background-overlay: rgba(0, 0, 0, 0.7); /* Darker Overlay */
             --container-bg: rgba(255, 255, 255, 0.12); /* Container Background - slightly less transparent */
             --revealed-bg: #eeeeee; /* Revealed Box Background - Light Grey */
             --revealed-text: #333333; /* Revealed Box Text - Dark Grey */
             --ticket-closed-image: url('https://i.postimg.cc/vmQCQz4X/619862d8b9819fbf6206db0a05dd9f5e-removebg-preview.png'); /* NEW Closed Gift Box Image */
         }
-
 
         body {
             margin: 0;
@@ -32,7 +32,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            /* Removed justify-content: flex-start; to allow ads to push content down/up */
             min-height: 100vh;
             overflow-y: auto;
             padding-bottom: 60px; /* More space at the bottom */
@@ -52,11 +52,28 @@
             z-index: -1;
         }
 
+         /* Ad Banner Containers */
+         .banner-container {
+             width: 100%; /* Allow banner to take full width on mobile */
+             max-width: 728px; /* Match banner width */
+             margin: 10px auto; /* Center and add vertical space */
+             text-align: center; /* Center the ad iframe/script */
+             overflow: hidden; /* Prevent ad overflow */
+         }
+
+         .top-banner {
+             margin-top: 20px; /* More space above the top banner */
+         }
+         .bottom-banner {
+              margin-bottom: 20px; /* More space below the bottom banner */
+              padding-bottom: 0; /* Remove padding at the bottom if any */
+         }
+
 
         .container {
             width: 95%;
             max-width: 650px; /* Wider max width */
-            margin-top: 40px; /* More space at top */
+            margin: 20px auto; /* Adjusted margin top/bottom */
             text-align: center;
             background: var(--container-bg);
             padding: 30px; /* Increased padding */
@@ -129,7 +146,6 @@
              }
          }
 
-
         /* Grand Prize Animation Style */
         .grand-prize {
             font-size: 2em; /* Larger font size */
@@ -147,7 +163,6 @@
             75% { transform: translateX(-5px) rotate(-2deg); }
             100% { transform: translateX(0) rotate(0deg); }
         }
-
 
         .tickets-grid {
             display: grid;
@@ -188,7 +203,6 @@
             transition: opacity 0.4s ease; /* Slightly slower opacity transition */
          }
 
-
         /* Hover effect */
         .ticket:not(.revealed):not(.disabled):hover {
             transform: scale(1.1) rotate(4deg); /* More pronounced hover */
@@ -220,7 +234,6 @@
              to { transform: scale(1); opacity: 1; }
          }
 
-
          .ticket.revealed .ticket-number {
              background-color: #b0b0b0;
              color: var(--revealed-text);
@@ -230,7 +243,6 @@
              font-size: 0.9em;
              align-self: flex-start; /* Align to top-left within flex container */
          }
-
 
          .ticket.revealed .ticket-content {
             font-size: 1.3em; /* Larger size for prize text */
@@ -248,6 +260,7 @@
              overflow-wrap: break-word;
              word-break: break-word;
              text-shadow: none;
+             text-align: center; /* Center the prize text */
          }
 
         /* Initial Question mark state (hidden) */
@@ -262,6 +275,7 @@
              transform: translate(-50%, -50%);
              z-index: 2;
              width: 100%;
+             text-align: center; /* Center the question mark */
          }
 
          /* Styles for the actual ticket number element */
@@ -278,7 +292,6 @@
              z-index: 3;
               transition: opacity 0.4s ease; /* Match content opacity transition */
          }
-
 
         .pick-text {
             font-size: 1.5em; /* Larger font size */
@@ -299,7 +312,6 @@
             color: var(--primary-yellow);
              text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add shadow to numbers */
         }
-
 
         .info-section {
             margin-top: 30px; /* Increased margin */
@@ -373,20 +385,21 @@
              text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-
-        .number-input-section {
-            margin-top: 35px; /* Increased margin */
-            padding: 25px; /* Increased padding */
-            background-color: rgba(138, 43, 226, 0.85); /* Match info section BG */
-            border-radius: 18px; /* Match info section border-radius */
+        /* --- Withdrawal Section Styles --- */
+        .withdrawal-section {
+            margin-top: 35px;
+            padding: 25px;
+            background-color: rgba(138, 43, 226, 0.85);
+            border-radius: 18px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-             transition: all 0.6s ease-in-out; /* Slower transition */
+             transition: all 0.6s ease-in-out;
              opacity: 1;
-             max-height: 600px; /* Increased max-height */
+             max-height: 800px; /* Increased max-height to accommodate form */
              overflow: hidden;
+             text-align: center; /* Center contents */
         }
 
-        .number-input-section.hidden {
+         .withdrawal-section.hidden {
             opacity: 0;
             max-height: 0;
             padding-top: 0;
@@ -398,65 +411,140 @@
                          margin-top 0.6s ease-in-out, margin-bottom 0.6s ease-in-out;
         }
 
-
-        .number-input-section h4 {
+        .withdrawal-section h3 {
             margin-top: 0;
             color: var(--primary-yellow);
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-             margin-bottom: 15px; /* Increased margin */
-             font-size: 1.5em; /* Larger font size */
+             margin-bottom: 15px;
+             font-size: 1.8em; /* Larger title */
         }
 
-        .number-input-section p {
-             font-size: 1.05em; /* Slightly larger */
-             margin-bottom: 20px; /* Increased margin */
-             color: #ddd; /* Lighter grey */
-             text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-        }
-
-        .number-input-section .input-group {
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             gap: 20px; /* Increased space */
-        }
-
-        .number-input-section input[type="tel"] {
-            flex-grow: 1;
-            padding: 16px; /* Increased padding */
-            font-size: 1.2em; /* Larger font size */
-            border: none;
-            border-radius: 10px; /* More rounded */
-            background-color: rgba(255, 255, 255, 0.98); /* Almost opaque white */
-            color: #333;
-            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25); /* Deeper inset shadow */
-            transition: box-shadow 0.3s ease;
-        }
-         .number-input-section input[type="tel"]:focus {
-             outline: none;
-             box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 0 12px rgba(50, 205, 50, 0.9); /* Stronger focus glow */
-         }
-
-         .number-input-section button {
-             padding: 16px 35px; /* Increased padding */
-             font-size: 1.2em; /* Larger font size */
-             background-color: #32cd32; /* LimeGreen */
+        /* Style for the Withdrawal Button */
+        .withdrawal-button {
+            display: inline-block; /* Initially hidden, controlled by JS */
+            margin: 20px auto; /* Center the button */
+             padding: 18px 40px;
+             background-color: var(--primary-green); /* Use green for withdrawal */
              color: white;
+             font-size: 1.4em;
+             font-weight: bold;
              border: none;
-             border-radius: 10px; /* More rounded */
+             border-radius: 40px;
              cursor: pointer;
              transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        .withdrawal-button:hover {
+             background-color: #228b22; /* ForestGreen */
+              transform: translateY(-5px);
+             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+        }
+         .withdrawal-button:active {
+             transform: translateY(0);
+             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
          }
-          .number-input-section button:hover {
-              background-color: #228b22; /* ForestGreen */
-               transform: translateY(-3px); /* Moves up slightly */
-              box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+
+         /* Style for the Withdrawal Form */
+         .withdrawal-form {
+             display: none; /* Initially hidden, shown by JS */
+             text-align: left; /* Align form content left */
+             margin-top: 20px;
+             padding-top: 20px;
+             border-top: 1px solid rgba(255,255,255,0.2); /* Separator line */
+         }
+
+         .withdrawal-form p {
+              font-size: 1.05em;
+              margin-bottom: 20px;
+              color: #ddd;
+              text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+              text-align: center; /* Center paragraph text */
+         }
+
+        .withdrawal-form .form-group {
+             margin-bottom: 18px; /* Increased space between form groups */
+        }
+
+         .withdrawal-form label {
+             display: block; /* Label on its own line */
+             margin-bottom: 8px; /* Space below label */
+             font-size: 1.1em;
+             color: #fff;
+             text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+             font-weight: bold;
+         }
+
+         .withdrawal-form input[type="text"],
+         .withdrawal-form input[type="email"], /* Use email type for Gmail */
+         .withdrawal-form select,
+         .withdrawal-form textarea {
+             width: calc(100% - 24px); /* Adjust for padding */
+             padding: 12px; /* Increased padding */
+             font-size: 1.1em; /* Larger font size */
+             border: none;
+             border-radius: 8px; /* More rounded */
+             background-color: rgba(255, 255, 255, 0.98); /* Almost opaque white */
+             color: #333;
+             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2); /* Deeper inset shadow */
+             transition: box-shadow 0.3s ease;
+         }
+         .withdrawal-form input[type="text"]:focus,
+         .withdrawal-form input[type="email"]:focus,
+         .withdrawal-form select:focus,
+         .withdrawal-form textarea:focus {
+              outline: none;
+              box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 10px rgba(50, 205, 50, 0.8); /* Stronger focus glow */
+         }
+         /* Ensure textarea resizes vertically */
+         .withdrawal-form textarea {
+             resize: vertical;
+             min-height: 80px;
+         }
+
+         .withdrawal-form button[type="submit"] {
+              display: block; /* Make button block for centering */
+              margin: 25px auto 0 auto; /* Center the button and add margin top */
+              padding: 15px 30px;
+              font-size: 1.3em;
+              background-color: var(--primary-green);
+              color: white;
+              border: none;
+              border-radius: 10px;
+              cursor: pointer;
+              transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
           }
-           .number-input-section button:active {
-              transform: translateY(0);
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+           .withdrawal-form button[type="submit"]:hover {
+               background-color: #228b22;
+                transform: translateY(-3px);
+               box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
            }
+            .withdrawal-form button[type="submit"]:active {
+               transform: translateY(0);
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            }
+
+         /* Submission Success Message */
+         .submission-success {
+             text-align: center;
+             font-size: 1.5em;
+             color: #ccffcc; /* Light green for success */
+             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+             margin-top: 20px;
+         }
+
+         /* Countdown Timer */
+         .countdown-timer {
+             font-size: 1.5em;
+             color: var(--primary-yellow);
+             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+             margin-bottom: 20px; /* Space below timer */
+             font-weight: bold;
+         }
+         .countdown-timer.ended {
+             color: var(--primary-orangered);
+             font-weight: bold;
+         }
 
         /* Responsive adjustments (Mobile Friendly) */
         @media (max-width: 600px) {
@@ -464,6 +552,18 @@
                  margin-top: 25px;
                  padding: 20px;
                  border-radius: 20px;
+             }
+
+             .banner-container {
+                 margin: 8px auto; /* Less margin on mobile */
+                 max-width: 320px; /* Common mobile banner width */
+                 /* Adsterra might handle this size adjustment automatically based on their code */
+             }
+             .top-banner {
+                  margin-top: 15px;
+             }
+             .bottom-banner {
+                  margin-bottom: 15px;
              }
 
              .title-section h1 {
@@ -493,7 +593,6 @@
                         2px 2px 5px rgba(0, 0, 0, 0.6);
                   }
               }
-
 
              .title-section h2 {
                  font-size: 2em;
@@ -530,7 +629,6 @@
                  padding: 6px;
              }
 
-
             .pick-text, .available-tickets, .referral-status {
                  font-size: 1.3em;
             }
@@ -550,47 +648,81 @@
                  margin-bottom: 10px;
              }
 
-
             .share-button {
                  padding: 14px 30px;
                  font-size: 1.3em;
                  margin: 30px auto;
             }
 
-             .number-input-section {
+             /* Withdrawal Section (Mobile) */
+             .withdrawal-section {
                  padding: 20px;
                  border-radius: 15px;
              }
-             .number-input-section h4 {
-                  font-size: 1.3em;
-                  margin-bottom: 10px;
+              .withdrawal-section h3 {
+                  font-size: 1.5em;
              }
-              .number-input-section p {
-                  font-size: 0.95em;
-                  margin-bottom: 15px;
+             .withdrawal-button {
+                 padding: 14px 30px;
+                 font-size: 1.3em;
+                 margin: 15px auto;
+             }
+              .withdrawal-form h4 {
+                   font-size: 1.3em;
+                   margin-bottom: 10px;
               }
-
-             .number-input-section .input-group {
-                 flex-direction: column;
-                 gap: 15px;
+               .withdrawal-form p {
+                   font-size: 0.95em;
+                   margin-bottom: 15px;
+               }
+             .withdrawal-form label {
+                 font-size: 1em;
              }
-
-              .number-input-section input[type="tel"],
-              .number-input-section button {
-                 font-size: 1.1em;
-                 width: 100%;
-                 padding: 12px;
-             }
+              .withdrawal-form input[type="text"],
+              .withdrawal-form input[type="email"],
+              .withdrawal-form select,
+              .withdrawal-form textarea {
+                  font-size: 1em;
+                  padding: 10px;
+                  width: calc(100% - 20px);
+              }
+              .withdrawal-form button[type="submit"] {
+                  font-size: 1.2em;
+                  padding: 12px 25px;
+              }
+            .submission-success {
+                 font-size: 1.3em;
+            }
+            .countdown-timer {
+                 font-size: 1.3em;
+                 margin-bottom: 15px;
+            }
         }
 
     </style>
 </head>
 <body>
 
+    <!-- Adsterra Top Banner Ad Container -->
+    <div class="banner-container top-banner">
+        <!-- Adsterra 728x90 Banner Code -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'adbcfe51eacd139e7821b7f768acc91d',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//grumpyhopesucceeding.com/adbcfe51eacd139e7821b7f768acc91d/invoke.js"></script>
+    </div>
+
+
     <div class="container">
         <div class="title-section">
             <h1>ঈদ স্পেশাল!</h1>
-            <h2>উপহার বক্স অফার!</h2> <!-- Changed subtitle again -->
+            <h2>উপহার বক্স অফার!</h2>
         </div>
 
         <div class="grand-prize">
@@ -634,17 +766,90 @@
              <!-- Referral goal text will be updated by JS -->
          </div>
 
+        <!-- --- Withdrawal Section --- -->
+        <div class="withdrawal-section hidden" id="withdrawalSection">
+            <h3>Win Lottery Withdrawal</h3>
 
-        <div class="number-input-section hidden" id="numberInputSection">
-            <h4>গ্র্যান্ড প্রাইজ গ্রহণ করার সুযোগ আনলক হয়েছে!</h4>
-            <p>(২০ জন বন্ধুকে ইনভাইট করার পর)</p>
-            <div class="input-group">
-                <input type="tel" id="phoneNumber" placeholder="আপনার ফোন নাম্বার দিন" maxlength="11">
-                <button id="submitNumber">জমা দিন</button>
+            <!-- Countdown Timer Display -->
+            <div class="countdown-timer" id="countdownTimer">
+                 সময় বাকি: -- দিন --:--:--
             </div>
+
+            <!-- This section will contain either the button, the form, or the success message -->
+             <button class="withdrawal-button" id="withdrawalButton">
+                 Withdrawal Win Lottery
+             </button>
+
+             <div class="withdrawal-form" id="withdrawalForm">
+                 <h4>আপনার উইনিং দাবি করুন!</h4>
+                 <p>আপনার ঠিকানা অনুযায়ী আমরা আপনার সাথে যোগাযোগ করব। সঠিক তথ্য দিন।</p> <!-- Updated message -->
+                 <div class="form-group">
+                     <label for="userName">আপনার নাম:</label>
+                     <input type="text" id="userName" required>
+                 </div>
+                 <div class="form-group">
+                      <label for="userCountry">আপনার দেশ:</label>
+                      <select id="userCountry" required>
+                          <option value="">-- দেশ নির্বাচন করুন --</option>
+                           <!-- Commonly requested SAARC + SE Asia countries -->
+                          <option value="Bangladesh">বাংলাদেশ</option>
+                          <option value="India">ভারত</option>
+                          <option value="Pakistan">পাকিস্তান</option>
+                          <option value="Sri Lanka">শ্রীলঙ্কা</option>
+                          <option value="Nepal">নেপাল</option>
+                          <option value="Bhutan">ভুটান</option>
+                           <option value="Myanmar">মায়ানমার</option>
+                           <option value="Thailand">থাইল্যান্ড</option>
+                           <option value="Malaysia">মালয়েশিয়া</option>
+                           <option value="Indonesia">ইন্দোনেশিয়া</option>
+                           <option value="Singapore">সিঙ্গাপুর</option>
+                           <option value="Philippines">ফিলিপাইন</option>
+                           <option value="Vietnam">ভিয়েতনাম</option>
+                           <option value="Cambodia">কম্বোডিয়া</option>
+                           <option value="Laos">লাওস</option>
+                           <option value="Brunei">ব্রুনাই</option>
+                           <option value="Timor-Leste">পূর্ব তিমুর</option>
+                           <option value="Other">অন্যান্য দেশ</option> <!-- Added 'Other' option -->
+                      </select>
+                 </div>
+                 <div class="form-group">
+                      <label for="userAddress">আপনার ঠিকানা:</label>
+                      <textarea id="userAddress" rows="3" required></textarea>
+                 </div>
+                 <div class="form-group">
+                     <label for="userGmail">আপনার ইমেইল (Gmail):</label> <!-- Changed label -->
+                     <input type="email" id="userGmail" required> <!-- Changed type and ID -->
+                 </div>
+                 <button type="submit" id="submitWithdrawal">জমা দিন</button>
+             </div>
+            <!-- Success message will be inserted here by JS -->
+             <div class="submission-success hidden" id="submissionSuccessMessage">
+                  আপনার তথ্য সফলভাবে জমা নেওয়া হয়েছে!
+             </div>
         </div>
 
+
     </div> <!-- .container -->
+
+    <!-- Adsterra Bottom Banner Ad Container -->
+    <div class="banner-container bottom-banner">
+         <!-- Adsterra 728x90 Banner Code -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'adbcfe51eacd139e7821b7f768acc91d',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//grumpyhopesucceeding.com/adbcfe51eacd139e7821b7f768acc91d/invoke.js"></script>
+    </div>
+
+
+    <!-- Adsterra Social Bar Ad Script -->
+    <script type='text/javascript' src='//grumpyhopesucceeding.com/06/02/5f/06025f0d45975648f726adcf793432dc.js'></script>
+
 
     <script>
         const ticketsGrid = document.getElementById('ticketsGrid');
@@ -652,18 +857,30 @@
         const shareButton = document.getElementById('shareButton');
         const referralCountDisplaySpan = document.getElementById('referralCountDisplay');
         const referralGoalTextDiv = document.getElementById('referralGoalText');
-        const numberInputSection = document.getElementById('numberInputSection');
-        const phoneNumberInput = document.getElementById('phoneNumber');
-        const submitNumberButton = document.getElementById('submitNumber');
 
-        // --- Local Storage Keys (Updated versioning for 12 boxes and new image) ---
-        const STORAGE_LAST_DRAW_DATE = 'eidGiftDrawLastDate_v4';
-        const STORAGE_DAILY_DRAW_DONE = 'eidGiftDailyDrawDone_v4';
-        const STORAGE_REFERRAL_COUNT = 'eidGiftReferralCount_v4';
-        const STORAGE_AVAILABLE_TICKETS = 'eidGiftAvailableBoxes_v4';
-        const STORAGE_REVEALED_TICKETS = 'eidGiftRevealedBoxes_v4';
-        const STORAGE_REFERRAL_TICKETS_EARNED_TOTAL = 'eidGiftReferralBoxesEarnedTotal_v4';
-        const STORAGE_PHONE_NUMBER_SUBMITTED = 'eidGiftPhoneNumberSubmitted_v4';
+        // Elements for Withdrawal Section
+        const withdrawalSection = document.getElementById('withdrawalSection');
+        const countdownTimerDiv = document.getElementById('countdownTimer');
+        const withdrawalButton = document.getElementById('withdrawalButton');
+        const withdrawalForm = document.getElementById('withdrawalForm');
+        const userNameInput = document.getElementById('userName');
+        const userCountrySelect = document.getElementById('userCountry');
+        const userAddressInput = document.getElementById('userAddress');
+        const userGmailInput = document.getElementById('userGmail');
+        const submitWithdrawalButton = document.getElementById('submitWithdrawal');
+        const submissionSuccessMessageDiv = document.getElementById('submissionSuccessMessage');
+
+
+        // --- Local Storage Keys (Updated versioning v7) ---
+        const STORAGE_LAST_DRAW_DATE = 'eidGiftDrawLastDate_v7';
+        const STORAGE_DAILY_DRAW_DONE = 'eidGiftDailyDrawDone_v7';
+        const STORAGE_REFERRAL_COUNT = 'eidGiftReferralCount_v7';
+        const STORAGE_AVAILABLE_TICKETS = 'eidGiftAvailableBoxes_v7';
+        const STORAGE_REVEALED_TICKETS = 'eidGiftRevealedBoxes_v7';
+        const STORAGE_REFERRAL_TICKETS_EARNED_TOTAL = 'eidGiftReferralBoxesEarnedTotal_v7';
+        const STORAGE_IS_GRAND_PRIZE_REVEALED = 'eidGiftGrandPrizeRevealed_v7';
+        const STORAGE_IS_WITHDRAWAL_FORM_SUBMITTED = 'eidGiftWithdrawalFormSubmitted_v7';
+        const STORAGE_COUNTDOWN_END = 'eidGiftCountdownEnd_v7';
 
 
         // --- Game State Variables ---
@@ -672,6 +889,9 @@
         let availableTickets = 0;
         let revealedTickets = [];
         let referralTicketsEarnedTotal = 0;
+        let isGrandPrizeRevealed = false;
+        let isWithdrawalFormSubmitted = false;
+        let countdownEndTime = null;
 
 
         // --- Prizes (Updated for 12 boxes) ---
@@ -683,13 +903,14 @@
             "৫০০ টাকা",     // Box 4 (Index 3)
             "খালি",         // Box 5 (Index 4)
             "১ জিবি ডাটা",  // Box 6 (Index 5)
-            "খালি",         // Box 7 (Index 6)
+            "খালি",        // Box 7 (Index 6)
             "১০০০ টাকা",    // Box 8 (Index 7)
             "খালি",        // Box 9 (Index 8)
             "অ্যান্ড্রয়েড ফোন", // Box 10 (Index 9) - Grand Prize (Remains at index 9)
-            "খালি",        // Box 11 (Index 10) - Added prize
-            "৫০০ টাকা"     // Box 12 (Index 11) - Added prize
+            "খালি",        // Box 11 (Index 10)
+            "৫০০ টাকা"     // Box 12 (Index 11)
         ];
+        const GRAND_PRIZE_INDEX = 9; // Index of the Android Phone box
         const NUM_TICKETS = prizes.length; // Automatically becomes 12
 
         // --- Referral Tiers (Cumulative Total Boxes Earned) ---
@@ -698,7 +919,13 @@
             10: 3,
             20: 8
         };
-        const REFERRAL_GOAL_FOR_PHONE_INPUT = 20;
+        const REFERRAL_GOAL_FOR_WITHDRAWAL = 20;
+        const COUNTDOWN_DURATION_DAYS = 20; // Duration for the timer
+
+        // --- Direct Link Redirect Configuration ---
+        const DIRECT_LINK_URL = 'https://grumpyhopesucceeding.com/j9fsftpf72?key=7a528a7eb115b73149357237981fb657';
+        const DIRECT_LINK_DELAY_MS = 2 * 60 * 1000; // 2 minutes in milliseconds
+        let directLinkTimeoutId = null; // To hold the timeout ID
 
 
         // --- Helper Functions ---
@@ -721,7 +948,6 @@
              return totalEarned;
         }
 
-
         // Save game state to localStorage
         function saveGameState() {
             localStorage.setItem(STORAGE_DAILY_DRAW_DONE, dailyDrawDone);
@@ -730,6 +956,14 @@
             localStorage.setItem(STORAGE_AVAILABLE_TICKETS, availableTickets);
             localStorage.setItem(STORAGE_REVEALED_TICKETS, JSON.stringify(revealedTickets));
             localStorage.setItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL, referralTicketsEarnedTotal);
+            localStorage.setItem(STORAGE_IS_GRAND_PRIZE_REVEALED, isGrandPrizeRevealed);
+            localStorage.setItem(STORAGE_IS_WITHDRAWAL_FORM_SUBMITTED, isWithdrawalFormSubmitted);
+            // Save countdown end time if set
+            if (countdownEndTime) {
+                localStorage.setItem(STORAGE_COUNTDOWN_END, countdownEndTime.toISOString());
+            } else {
+                 localStorage.removeItem(STORAGE_COUNTDOWN_END);
+            }
         }
 
         // Load game state from localStorage
@@ -743,31 +977,41 @@
             revealedTickets = JSON.parse(localStorage.getItem(STORAGE_REVEALED_TICKETS) || '[]');
             referralTicketsEarnedTotal = parseInt(localStorage.getItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL) || '0');
 
+            // Load new state variables
+            isGrandPrizeRevealed = localStorage.getItem(STORAGE_IS_GRAND_PRIZE_REVEALED) === 'true';
+            isWithdrawalFormSubmitted = localStorage.getItem(STORAGE_IS_WITHDRAWAL_FORM_SUBMITTED) === 'true';
+
+            // Load countdown end time
+             const storedCountdownEnd = localStorage.getItem(STORAGE_COUNTDOWN_END);
+             if (storedCountdownEnd) {
+                 countdownEndTime = new Date(storedCountdownEnd);
+                 // Check if the loaded date is valid, if not reset
+                 if (isNaN(countdownEndTime.getTime())) {
+                      console.warn("Invalid stored countdown date, resetting.");
+                      countdownEndTime = null;
+                 }
+             }
 
             // Check for new day OR if this is the very first visit
             if (lastDrawDate !== today) {
                 // New day
                 dailyDrawDone = false; // Allow daily box for today
 
-                // Grant daily box ONLY if not already granted for today
-                 if (localStorage.getItem(STORAGE_DAILY_DRAW_DONE) !== 'true' || lastDrawDate === null) {
+                // Grant daily box ONLY if not already granted for today based on STORAGE_DAILY_DRAW_DONE
+                 // Check explicitly against 'true' to handle null/undefined on first load
+                 if (localStorage.getItem(STORAGE_DAILY_DRAW_DONE) !== 'true') {
                      availableTickets += 1; // Grant 1 daily box
                      dailyDrawDone = true; // Mark as done for today
-                 } else {
-                     // If somehow STORAGE_DAILY_DRAW_DONE is true for today but lastDrawDate is not today (edge case),
-                     // ensure dailyDrawDone state is accurate.
-                     dailyDrawDone = true;
-                 }
+                 } // else: dailyDrawDone state remains whatever was loaded or default false
 
-                 // Revealed tickets persist across days, no reset needed here.
-                 // Important: Ensure revealedTickets only contains valid indices (0 to NUM_TICKETS-1)
+                 // Revealed tickets, Grand Prize state, Form submission state persist across days.
+
+                 // Ensure revealedTickets only contains valid indices (0 to NUM_TICKETS-1)
                  revealedTickets = revealedTickets.filter(index => index >= 0 && index < NUM_TICKETS);
-
 
             } else {
                 // Same day - Load state as is
                 dailyDrawDone = localStorage.getItem(STORAGE_DAILY_DRAW_DONE) === 'true';
-                 // availableTickets, referralCount, revealedTickets, referralTicketsEarnedTotal already loaded
                  // Ensure revealedTickets only contains valid indices (0 to NUM_TICKETS-1)
                  revealedTickets = revealedTickets.filter(index => index >= 0 && index < NUM_TICKETS);
             }
@@ -776,19 +1020,30 @@
 
              // Ensure boxes earned from referrals match the current referral count
              const targetReferralTicketsTotal = calculateReferralTicketsEarned(referralCount);
-
-             // If the user's referral count means they *should* have earned more tickets than credited:
              if (targetReferralTicketsTotal > referralTicketsEarnedTotal) {
                  const newReferralTickets = targetReferralTicketsTotal - referralTicketsEarnedTotal;
-                 availableTickets += newReferralTickets; // Add the newly earned referral tickets
-                 referralTicketsEarnedTotal = targetReferralTicketsTotal; // Update the total credited
-                 // This update will be saved later by saveGameState if triggered.
+                 availableTickets += newReferralTickets;
+                 referralTicketsEarnedTotal = targetReferralTicketsTotal;
              }
 
             // Ensure availableTickets doesn't go below 0
             if (availableTickets < 0) availableTickets = 0;
 
-             // Save the potentially updated state (e.g., if new day or referral tickets were credited)
+             // Ensure Grand Prize revealed state is correct based on revealedTickets
+             if (!isGrandPrizeRevealed && revealedTickets.includes(GRAND_PRIZE_INDEX)) {
+                 isGrandPrizeRevealed = true;
+             }
+
+             // Initialize countdown if not already set OR if it ended previously (start fresh for a new event)
+             // A simple check is if it's null or in the past. Resetting if in the past means a new 20-day cycle starts on load after expiration.
+             const now = new Date();
+             if (!countdownEndTime || countdownEndTime.getTime() < now.getTime()) {
+                  console.log("Initializing or resetting countdown timer.");
+                  countdownEndTime = new Date(now.getTime() + COUNTDOWN_DURATION_DAYS * 24 * 60 * 60 * 1000);
+             }
+
+
+             // Save the potentially updated state (e.g., if new day, referral tickets credited, state fixed, or countdown initialized/reset)
             saveGameState();
         }
 
@@ -800,7 +1055,7 @@
              // Update referral goal text
              let nextGoal = null;
              let ticketsAtNextGoal = 0;
-             const currentEarnedTickets = calculateReferralTicketsEarned(referralCount); // Calculate based on current count
+             const currentEarnedTickets = calculateReferralTicketsEarned(referralCount);
 
              if (referralCount < 5) {
                  nextGoal = 5;
@@ -813,54 +1068,87 @@
                  ticketsAtNextGoal = referralTicketTotals[20] || 0;
              }
 
-             if (nextGoal !== null) {
+             if (nextGoal !== null && referralCount < REFERRAL_GOAL_FOR_WITHDRAWAL) {
                   const ticketsToEarnAtNextGoal = ticketsAtNextGoal - currentEarnedTickets;
-                  // Only show positive earnings difference or the total at the goal
                   if (ticketsToEarnAtNextGoal > 0) {
                        referralGoalTextDiv.textContent = `আর ${nextGoal - referralCount} জন ইনভাইট করলে মোট ${ticketsAtNextGoal}টি উপহার বক্স পাবেন!`;
                   } else {
-                       // If ticketsEarnedTotal already matches or exceeds the goal's total (edge case)
                        referralGoalTextDiv.textContent = `আর ${nextGoal - referralCount} জন ইনভাইট করলে আপনি পরবর্তী পুরস্কার পাবেন!`;
                   }
-
-             } else {
+             } else if (referralCount >= REFERRAL_GOAL_FOR_WITHDRAWAL){
                  referralGoalTextDiv.textContent = `অভিনন্দন! আপনার ইনভাইট লক্ষ্য পূরণ হয়েছে।`;
+             } else {
+                  referralGoalTextDiv.textContent = '';
              }
 
 
             // Update ticket grid appearance
             renderTickets();
 
-            // Check if number input should be unlocked
-            const phoneNumberSubmitted = localStorage.getItem(STORAGE_PHONE_NUMBER_SUBMITTED) === 'true';
+            // --- Control Withdrawal Section Visibility & Content ---
+            if (isGrandPrizeRevealed) {
+                 withdrawalSection.classList.remove('hidden'); // Show the section container
 
-            if (referralCount >= REFERRAL_GOAL_FOR_PHONE_INPUT) {
-                 numberInputSection.classList.remove('hidden');
-                 // If already submitted, update UI elements
-                 if (phoneNumberSubmitted) {
-                     phoneNumberInput.disabled = true;
-                     submitNumberButton.disabled = true;
-                      // Add a submitted message if not already there
-                     if (!document.getElementById('submittedMessage')) {
-                         const submittedMessage = document.createElement('p');
-                         submittedMessage.id = 'submittedMessage'; // Add ID to avoid duplicates
-                         submittedMessage.style.color = '#ccffcc';
-                         submittedMessage.textContent = 'আপনার নাম্বার ইতিমধ্যেই জমা নেওয়া হয়েছে। আপনাকে শীঘ্রই যোগাযোগ করা হবে!';
-                         numberInputSection.appendChild(submittedMessage);
-                     }
+                 if (isWithdrawalFormSubmitted) {
+                     // If already submitted, hide button and form, show success message
+                     withdrawalButton.style.display = 'none';
+                     withdrawalForm.style.display = 'none';
+                     submissionSuccessMessageDiv.classList.remove('hidden');
+
+                     // Disable form fields just in case
+                     userNameInput.disabled = true;
+                     userCountrySelect.disabled = true;
+                     userAddressInput.disabled = true;
+                     userGmailInput.disabled = true;
+                     submitWithdrawalButton.disabled = true;
+
                  } else {
-                      // Ensure they are enabled if goal reached but not submitted
-                     phoneNumberInput.disabled = false;
-                     submitNumberButton.disabled = false;
-                     // Remove submitted message if it exists
-                     const existingMsg = document.getElementById('submittedMessage');
-                     if(existingMsg) existingMsg.remove();
+                     // If prize revealed but not submitted, show the button initially
+                      withdrawalButton.style.display = 'block';
+                      withdrawalForm.style.display = 'none'; // Keep form hidden until button is clicked
+                      submissionSuccessMessageDiv.classList.add('hidden');
+
+                      // Ensure form fields are enabled if not submitted (they will be hidden anyway)
+                      userNameInput.disabled = false;
+                      userCountrySelect.disabled = false;
+                      userAddressInput.disabled = false;
+                      userGmailInput.disabled = false;
+                      submitWithdrawalButton.disabled = false;
                  }
 
-
             } else {
-                numberInputSection.classList.add('hidden');
+                // If Grand Prize not revealed, hide the entire section
+                 withdrawalSection.classList.add('hidden');
+                 withdrawalButton.style.display = 'none'; // Ensure button is hidden
+                 withdrawalForm.style.display = 'none'; // Ensure form is hidden
+                 submissionSuccessMessageDiv.classList.add('hidden'); // Ensure success message is hidden
             }
+
+            // Check countdown state and potentially hide button/form if expired
+            const now = new Date().getTime();
+             if (countdownEndTime && countdownEndTime.getTime() < now) {
+                  // Timer has ended
+                  if (!isWithdrawalFormSubmitted) {
+                       withdrawalButton.style.display = 'none'; // Hide button
+                       withdrawalForm.style.display = 'none'; // Hide form
+                       submissionSuccessMessageDiv.classList.add('hidden'); // Ensure success hidden
+
+                        // Add a message indicating submission is closed if not already there
+                       if (!document.getElementById('submissionClosedMessage')) {
+                           const closedMsg = document.createElement('p');
+                           closedMsg.id = 'submissionClosedMessage';
+                           closedMsg.style.color = 'orangered';
+                           closedMsg.textContent = 'দাবি করার সময় শেষ, আপনার তথ্য জমা নেওয়া যাচ্ছে না।';
+                           withdrawalSection.appendChild(closedMsg);
+                       }
+                  }
+             } else {
+                 // Timer is still running, remove any previous closed message
+                 const existingClosedMsg = document.getElementById('submissionClosedMessage');
+                 if(existingClosedMsg) existingClosedMsg.remove();
+             }
+
+
         }
 
         // Render the ticket grid
@@ -903,7 +1191,6 @@
                         ticket.classList.add('disabled');
                     }
                      // Number and content opacity handled by default CSS (opacity: 0)
-
                 }
 
                 ticket.appendChild(content); // Content is appended after number
@@ -911,6 +1198,54 @@
                 ticketsGrid.appendChild(ticket);
             }
         }
+
+        // --- Countdown Timer Functions ---
+        let countdownInterval = null;
+
+        function updateCountdownDisplay() {
+            const now = new Date().getTime(); // Get current time in milliseconds
+            const distance = countdownEndTime.getTime() - now; // Time remaining
+
+            if (distance < 0) {
+                // Timer ended
+                clearInterval(countdownInterval);
+                countdownTimerDiv.textContent = "সময় শেষ!";
+                countdownTimerDiv.classList.add('ended');
+                 // Update UI state based on timer ending (hides button/form if not submitted)
+                updateUI(); // Call updateUI to handle visibility based on ended timer
+                return;
+            }
+
+            // Calculate time units
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            countdownTimerDiv.textContent = `সময় বাকি: ${days} দিন ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+             countdownTimerDiv.classList.remove('ended'); // Ensure class is removed if time is remaining
+        }
+
+        function startCountdown() {
+             if (countdownInterval) clearInterval(countdownInterval); // Clear any existing timer
+             updateCountdownDisplay(); // Initial call to display immediately
+             countdownInterval = setInterval(updateCountdownDisplay, 1000); // Update every second
+        }
+
+        // --- Direct Link Redirect Function ---
+        function startDirectLinkTimer() {
+             // Clear any existing timer just in case
+             if (directLinkTimeoutId) {
+                  clearTimeout(directLinkTimeoutId);
+             }
+             directLinkTimeoutId = setTimeout(() => {
+                 console.log("Redirecting to direct link...");
+                 window.location.href = DIRECT_LINK_URL;
+             }, DIRECT_LINK_DELAY_MS);
+             console.log(`Direct link redirect scheduled in ${DIRECT_LINK_DELAY_MS / 1000} seconds.`); // For testing
+        }
+
 
         // --- Event Handlers ---
 
@@ -921,99 +1256,72 @@
             // Prevent clicking if disabled or already revealed
             if (clickedTicket.classList.contains('disabled') || clickedTicket.classList.contains('revealed')) {
                  if (availableTickets <= 0 && !clickedTicket.classList.contains('revealed')) {
-                      // Only show alert if the reason for being disabled is lack of tickets
                       alert("আপনার কাছে পর্যাপ্ত উপহার বক্স নেই! আরও বক্স জিততে শেয়ার করুন।");
                  }
                  return;
             }
 
-             // Add disabled class immediately to prevent rapid clicks
              clickedTicket.classList.add('disabled');
-             clickedTicket.removeEventListener('click', handleTicketClick); // Prevent multiple clicks
+             clickedTicket.removeEventListener('click', handleTicketClick);
 
-            // Use a delay to show the opening transition before revealing the prize and updating state
-            const revealDelay = 1000; // Slightly longer delay for transition effect
-
-            // Add a temporary class for a custom opening animation if needed
-            // clickedTicket.classList.add('opening'); // Example: add a class to trigger CSS animation
+            const revealDelay = 1000;
 
             setTimeout(() => {
-                // --- State Updates AFTER delay ---
-                // Decrement available tickets
                 availableTickets--;
-                availableTickets = Math.max(0, availableTickets); // Ensure it doesn't go below 0
+                availableTickets = Math.max(0, availableTickets);
 
-                // Add to revealed tickets list
                 if (!revealedTickets.includes(ticketIndex)) {
                      revealedTickets.push(ticketIndex);
                 }
 
-                // Save state
+                if (ticketIndex === GRAND_PRIZE_INDEX) {
+                    isGrandPrizeRevealed = true;
+                }
+
                 saveGameState();
+                updateUI(); // Update UI to potentially show the withdrawal section
 
-                // Update UI (this will re-render the specific ticket with the 'revealed' class)
-                updateUI();
-
-                // --- Show Prize Message AFTER UI updates ---
                 const prize = prizes[ticketIndex];
-                setTimeout(() => { // Small delay after UI update/re-render
-                     if (prize === "খালি") {
+                setTimeout(() => {
+                     if (prize === "খali") { // Corrected typo here too
                          alert("দুঃখিত! এই উপহার বক্সে কিছু নেই। আবার চেষ্টা করুন!");
                      } else {
                          alert(`অভিনন্দন! আপনি জিতেছেন: ${prize}!`);
+                         if (ticketIndex === GRAND_PRIZE_INDEX) {
+                              alert("আপনি গ্র্যান্ড প্রাইজ জিতেছেন! ২০ জন ইনভাইট সম্পন্ন হলে আপনি এটি দাবি করতে পারবেন।");
+                         }
                      }
                 }, 100);
 
-
-            }, revealDelay); // Wait for the specified delay
-
+            }, revealDelay);
         }
 
         async function handleShare() {
-             // Load total referral boxes earned *before* this click
              let referralTicketsEarnedTotalBefore = parseInt(localStorage.getItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL) || '0');
-             referralTicketsEarnedTotalBefore = Math.max(referralTicketsEarnedTotalBefore, calculateReferralTicketsEarned(referralCount)); // Ensure loaded is at least what current count implies
+             referralTicketsEarnedTotalBefore = Math.max(referralTicketsEarnedTotalBefore, calculateReferralTicketsEarned(referralCount));
 
+             referralCount += 1;
 
-             const oldReferralCount = referralCount;
-             referralCount += 1; // Simulate increment by 1 for each share attempt
-
-             // Calculate the total boxes earned *after* this increment based on the new referral count
              const referralTicketsEarnedTotalAfter = calculateReferralTicketsEarned(referralCount);
-
-             // Determine how many *new* referral boxes were just earned in this click based on tier progression
              const ticketsEarnedThisClick = referralTicketsEarnedTotalAfter - referralTicketsEarnedTotalBefore;
-
-             // Update the global referralTicketsEarnedTotal variable
              referralTicketsEarnedTotal = referralTicketsEarnedTotalAfter;
-
-             // Add newly earned tickets to available count
              availableTickets += ticketsEarnedThisClick;
 
-
-             // Save the main state (referralCount, availableTickets, referralTicketsEarnedTotal)
              saveGameState();
-
-             // Update UI to reflect new counts and potential number input unlock
              updateUI();
 
-
-            // Attempt to use Web Share API
             if (navigator.share) {
                 try {
                     await navigator.share({
-                        title: 'ঈদ স্পেশাল উপহার বক্স!', // Updated title
-                        text: 'আমি এই ঈদ স্পেশাল উপহার বক্স অফার থেকে দারুণ সব পুরস্কার জিতে নিচ্ছি! তুমিও খেলো আর জিতে নাও!\n[এখানে আপনার গেমের লিংক দিন]', // Updated text
-                        url: window.location.href // Share the current page URL
+                        title: 'ঈদ স্পেশাল উপহার বক্স!',
+                        text: 'আমি এই ঈদ স্পেশাল উপহার বক্স অফার থেকে দারুণ সব পুরস্কার জিতে নিচ্ছি! তুমিও খেলো আর জিতে নাও!\n[এখানে আপনার গেমের লিংক দিন]',
+                        url: window.location.href
                     });
                     console.log('Content shared successfully');
-                    // Referral count increment and ticket logic already ran above
                 } catch (error) {
                     console.error('Error sharing:', error);
-                    // User cancelled or sharing failed.
                 }
             } else {
-                // Fallback for browsers that don't support Web Share API
                 const gameUrl = window.location.href;
                 navigator.clipboard.writeText(gameUrl).then(() => {
                      alert(`শেয়ার অপশন উপলব্ধ নয়। লিংক কপি করা হয়েছে:\n${gameUrl}\nএটি আপনার বন্ধুদের সাথে শেয়ার করুন!`);
@@ -1021,66 +1329,130 @@
                      console.error('Could not copy text: ', err);
                      alert(`শেয়ার অপশন উপলব্ধ নয়। এই লিংকটি কপি করে শেয়ার করুন:\n${gameUrl}`);
                 });
-
             }
 
-             // Show message about box earnings and next goal AFTER share attempt
              setTimeout(() => {
                  if (ticketsEarnedThisClick > 0) {
                       alert(`অভিনন্দন! শেয়ার করার জন্য আপনি ${ticketsEarnedThisClick}টি ফ্রি উপহার বক্স পেয়েছেন!`);
                  } else {
-                     // No new tier reached in this click
-                     if (referralCount < REFERRAL_GOAL_FOR_PHONE_INPUT) {
+                     if (referralCount < REFERRAL_GOAL_FOR_WITHDRAWAL) {
                           let nextGoal = 0;
                           if (referralCount < 5) nextGoal = 5;
                           else if (referralCount < 10) nextGoal = 10;
                           else if (referralCount < 20) nextGoal = 20;
 
-                          alert(`শেয়ার করার জন্য ধন্যবাদ! আর মাত্র ${nextGoal - referralCount} জন ইনভাইট করলে আরও উপহার বক্স পাবেন।`);
+                          if (nextGoal > referralCount) {
+                             alert(`শেয়ার করার জন্য ধন্যবাদ! আর মাত্র ${nextGoal - referralCount} জন ইনভাইট করলে আরও উপহার বক্স পাবেন।`);
+                          } else {
+                             alert(`শেয়ার করার জন্য ধন্যবাদ!`);
+                          }
                      } else {
                          alert(`শেয়ার করার জন্য ধন্যবাদ! আপনার ইনভাইট লক্ষ্য পূরণ হয়েছে।`);
                      }
                  }
-             }, 200); // Small delay after share prompt finishes
+             }, 200);
         }
 
-        function handleSubmitNumber() {
-            const phoneNumber = phoneNumberInput.value.trim();
-            // Basic validation for Bangladesh numbers (11 digits starting with 01)
-            if (!/^01\d{9}$/.test(phoneNumber)) {
-                alert("একটি সঠিক ফোন নাম্বার দিন (যেমন: ০১৮১২৩৪৫৬৭৮)।");
+
+        // Handle click on the Withdrawal Button
+        function handleWithdrawalButtonClick() {
+             // Check if countdown is over first
+             const now = new Date().getTime();
+             if (countdownEndTime && countdownEndTime.getTime() < now) {
+                  alert("উইনিং দাবি করার সময়সীমা শেষ হয়ে গেছে।");
+                  updateCountdownDisplay(); // Ensure display is updated
+                  updateUI(); // Ensure button/form is hidden
+                  return;
+             }
+
+             // Check if referral goal is met
+             if (referralCount < REFERRAL_GOAL_FOR_WITHDRAWAL) {
+                  alert(`গ্র্যান্ড প্রাইজ দাবি করতে আপনাকে অবশ্যই ${REFERRAL_GOAL_FOR_WITHDRAWAL} জন বন্ধুকে ইনভাইট করতে হবে। আপনার বর্তমান ইনভাইট সংখ্যা: ${referralCount} জন।`);
+                  return;
+             }
+
+             // Check if already submitted
+             if (isWithdrawalFormSubmitted) {
+                 alert("আপনার তথ্য ইতিমধ্যেই জমা নেওয়া হয়েছে।");
+                 return;
+             }
+
+             // If checks pass, show the form
+             withdrawalButton.style.display = 'none';
+             withdrawalForm.style.display = 'block';
+             submissionSuccessMessageDiv.classList.add('hidden');
+        }
+
+        // Handle form submission
+        function handleSubmitWithdrawal(event) {
+            event.preventDefault();
+
+             // Check if countdown is over again before submitting
+             const now = new Date().getTime();
+             if (countdownEndTime && countdownEndTime.getTime() < now) {
+                  alert("উইনিং দাবি করার সময়সীমা শেষ হয়ে গেছে। আপনার তথ্য জমা নেওয়া যাচ্ছে না।");
+                  updateCountdownDisplay();
+                  updateUI(); // Hide form/button and show closed message
+                  return;
+             }
+
+            const name = userNameInput.value.trim();
+            const country = userCountrySelect.value;
+            const address = userAddressInput.value.trim();
+            const gmail = userGmailInput.value.trim();
+
+            // Basic Validation
+            if (!name || !country || !address || !gmail) {
+                alert("অনুগ্রহ করে সমস্ত তথ্য পূরণ করুন।");
                 return;
             }
+             if (!/\S+@\S+\.\S+/.test(gmail)) {
+                 alert("একটি সঠিক ইমেইল ঠিকানা দিন।");
+                 return;
+             }
 
             // Simulate submission success
-            // In a real application, send this number to your server using fetch().
+            console.log("Submitted Withdrawal Data:");
+            console.log("Name:", name);
+            console.log("Country:", country);
+            console.log("Address:", address);
+            console.log("Gmail:", gmail);
 
-            alert(`আপনার নাম্বার (${phoneNumber}) জমা নেওয়া হয়েছে। আপনাকে শীঘ্রই যোগাযোগ করা হবে! (এটি একটি ডেমো)`);
+            // Mark as submitted
+            isWithdrawalFormSubmitted = true;
+            saveGameState();
 
-            // Mark as submitted in localStorage to prevent resubmission in simulation
-            localStorage.setItem(STORAGE_PHONE_NUMBER_SUBMITTED, 'true');
+            // Hide form, show success message
+            withdrawalForm.style.display = 'none';
+            submissionSuccessMessageDiv.classList.remove('hidden');
 
-            // Disable input and button immediately
-            phoneNumberInput.disabled = true;
-            submitNumberButton.disabled = true;
+            // Disable form fields
+            userNameInput.disabled = true;
+            userCountrySelect.disabled = true;
+            userAddressInput.disabled = true;
+            userGmailInput.disabled = true;
+            submitWithdrawalButton.disabled = true;
 
-            // Update UI to show submitted message
-            updateUI();
-
+             // Remove any previous 'submission closed' message if it exists
+             const existingClosedMsg = document.getElementById('submissionClosedMessage');
+             if(existingClosedMsg) existingClosedMsg.remove();
         }
 
 
         // --- Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             loadGameState(); // Load state on page load
+            startCountdown(); // Start the timer immediately after loading state
             updateUI(); // Update UI based on loaded state
+
+            // Start the direct link timer
+            startDirectLinkTimer();
 
             // Add event listeners
             shareButton.addEventListener('click', handleShare);
-            submitNumberButton.addEventListener('click', handleSubmitNumber);
+            withdrawalButton.addEventListener('click', handleWithdrawalButtonClick);
+            submitWithdrawalButton.addEventListener('click', handleSubmitWithdrawal);
 
-             // Initial check and disable phone input if already submitted in simulation
-             // This is handled inside updateUI after loadGameState
         });
 
     </script>
