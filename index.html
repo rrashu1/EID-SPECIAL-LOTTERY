@@ -1,1461 +1,644 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ঈদ স্পেশাল উপহার বক্স!</title>
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/vmQCQz4X/619862d8b9819fbf6206db0a05dd9f5e-removebg-preview.png">
+    <title>EID SPECIAL EVENT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Import Bengali Font */
-        @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap');
-
-        :root {
-            --primary-yellow: #ffda2c; /* Header, Prize Text, Highlights */
-            --primary-purple: #8a2be2; /* Button Text, Input BG, etc. */
-            --primary-orangered: #ff4500; /* Share Button */
-            --primary-green: #32cd32; /* Submit Button, Withdrawal Button */
-            --background-overlay: rgba(0, 0, 0, 0.7); /* Darker Overlay */
-            --container-bg: rgba(255, 255, 255, 0.12); /* Container Background - slightly less transparent */
-            --revealed-bg: #eeeeee; /* Revealed Box Background - Light Grey */
-            --revealed-text: #333333; /* Revealed Box Text - Dark Grey */
-            --ticket-closed-image: url('https://i.postimg.cc/vmQCQz4X/619862d8b9819fbf6206db0a05dd9f5e-removebg-preview.png'); /* NEW Closed Gift Box Image */
-        }
-
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Baloo Da 2', sans-serif;
-            color: #fff;
-            /* Use a festive background image - replace with your desired link */
-            background: url('https://i.imgur.com/P3saYvR.jpg') no-repeat center center fixed; /* Example festive background */
-            background-size: cover;
+            background-color: #eef1f5;
+            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Removed justify-content: flex-start; to allow ads to push content down/up */
-            min-height: 100vh;
-            overflow-y: auto;
-            padding-bottom: 60px; /* More space at the bottom */
-            position: relative;
-            z-index: 1;
+            padding-bottom: 50px;
         }
 
-        /* Overlay to darken background */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--background-overlay);
-            z-index: -1;
-        }
-
-         /* Ad Banner Containers */
-         .banner-container {
-             width: 100%; /* Allow banner to take full width on mobile */
-             max-width: 728px; /* Match banner width */
-             margin: 10px auto; /* Center and add vertical space */
-             text-align: center; /* Center the ad iframe/script */
-             overflow: hidden; /* Prevent ad overflow */
-         }
-
-         .top-banner {
-             margin-top: 20px; /* More space above the top banner */
-         }
-         .bottom-banner {
-              margin-bottom: 20px; /* More space below the bottom banner */
-              padding-bottom: 0; /* Remove padding at the bottom if any */
-         }
-
-
-        .container {
+        #main-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             width: 95%;
-            max-width: 650px; /* Wider max width */
-            margin: 20px auto; /* Adjusted margin top/bottom */
+            max-width: 750px;
             text-align: center;
-            background: var(--container-bg);
-            padding: 30px; /* Increased padding */
-            border-radius: 25px; /* More rounded corners */
-            backdrop-filter: blur(12px); /* Stronger frosted glass */
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6); /* Deeper shadow */
-            border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
-        }
-
-         /* Header Section */
-         .title-section {
-             margin-bottom: 30px; /* Increased margin */
-         }
-
-        /* Title Animation Styles */
-        .title-section h1 {
-            font-size: 4em; /* Even larger font size */
-            margin: 0 0 10px 0; /* Adjusted margin */
-            text-shadow:
-                0 0 20px var(--primary-yellow),   /* Inner Yellow Glow */
-                0 0 35px var(--primary-yellow),
-                0 0 50px var(--primary-purple),  /* Outer Purple Glow */
-                0 0 70px var(--primary-purple),
-                0 0 80px var(--primary-purple),
-                4px 4px 8px rgba(0, 0, 0, 0.7);   /* Text Shadow */
-            color: #fff;
-            animation: neon-title 2s ease-in-out infinite alternate; /* Slower animation */
-        }
-
-         /* Keyframes for neon glow on title */
-         @keyframes neon-title {
-             from {
-                 text-shadow:
-                     0 0 10px var(--primary-yellow),
-                     0 0 20px var(--primary-yellow),
-                     0 0 30px var(--primary-purple),
-                     0 0 45px var(--primary-purple),
-                     0 0 55px var(--primary-purple),
-                     3px 3px 6px rgba(0, 0, 0, 0.6);
-             }
-             to {
-                 text-shadow:
-                     0 0 20px var(--primary-yellow),
-                     0 0 35px var(--primary-yellow),
-                     0 0 50px var(--primary-purple),
-                     0 0 70px var(--primary-purple),
-                     0 0 80px var(--primary-purple),
-                     4px 4px 8px rgba(0, 0, 0, 0.7);
-             }
-         }
-
-        .title-section h2 {
-             font-size: 2.8em; /* Even larger font size */
-             margin: 0;
-             color: var(--primary-yellow);
-             text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-             animation: pulse-subtitle 3s ease-in-out infinite alternate; /* Slower animation */
-        }
-
-         /* Keyframes for subtitle pulse */
-         @keyframes pulse-subtitle {
-             from {
-                 transform: scale(1);
-                 opacity: 0.9;
-             }
-             to {
-                 transform: scale(1.02);
-                 opacity: 1;
-             }
-         }
-
-        /* Grand Prize Animation Style */
-        .grand-prize {
-            font-size: 2em; /* Larger font size */
-            color: var(--primary-orangered);
-            margin-top: 20px; /* Increased margin */
-            margin-bottom: 35px; /* Increased margin */
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); /* Deeper shadow */
-            animation: shake 0.8s infinite alternate;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(-5px) rotate(-2deg); } /* More intense shake */
-            50% { transform: translateX(5px) rotate(2deg); }
-            75% { transform: translateX(-5px) rotate(-2deg); }
-            100% { transform: translateX(0) rotate(0deg); }
-        }
-
-        .tickets-grid {
-            display: grid;
-            /* Auto fit columns, min size 100px. Will adapt for 12 items */
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 20px; /* Increased space between tickets */
-            margin-bottom: 30px;
-        }
-
-        .ticket {
-            background-image: var(--ticket-closed-image);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-color: transparent;
-            border: none;
-            border-radius: 12px; /* More rounded */
-            padding: 0;
-            aspect-ratio: 1 / 1; /* Keep square */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Deeper shadow */
-
-            /* Transition for opening animation effect */
-             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease,
-                         opacity 0.3s ease, background-color 0.6s ease; /* Slightly slower background transition */
-        }
-
-        /* Hide number and content initially for closed box look */
-         .ticket .ticket-number,
-         .ticket .ticket-content {
-            opacity: 0;
-            transition: opacity 0.4s ease; /* Slightly slower opacity transition */
-         }
-
-        /* Hover effect */
-        .ticket:not(.revealed):not(.disabled):hover {
-            transform: scale(1.1) rotate(4deg); /* More pronounced hover */
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
-        }
-
-        /* Disabled state */
-        .ticket.disabled:not(.revealed) {
-            opacity: 0.5; /* Slightly more faded */
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
-         /* Revealed State */
-         .ticket.revealed {
-            background-image: none;
-            background-color: var(--revealed-bg);
-            border: 3px solid #b0b0b0;
-            color: var(--revealed-text);
-            cursor: default;
-            transform: none;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-            animation: revealed-entry 0.5s ease-out; /* Slightly slower animation */
-         }
-
-         @keyframes revealed-entry {
-             from { transform: scale(0.8); opacity: 0; }
-             to { transform: scale(1); opacity: 1; }
-         }
-
-         .ticket.revealed .ticket-number {
-             background-color: #b0b0b0;
-             color: var(--revealed-text);
-             opacity: 1;
-             position: static;
-             margin: 5px;
-             font-size: 0.9em;
-             align-self: flex-start; /* Align to top-left within flex container */
-         }
-
-         .ticket.revealed .ticket-content {
-            font-size: 1.3em; /* Larger size for prize text */
-            color: var(--revealed-text);
-            font-weight: bold;
-            position: static;
-            transform: none;
-            opacity: 1;
-             padding: 10px;
-             width: auto;
-             flex-grow: 1;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             overflow-wrap: break-word;
-             word-break: break-word;
-             text-shadow: none;
-             text-align: center; /* Center the prize text */
-         }
-
-        /* Initial Question mark state (hidden) */
-         .ticket .ticket-content {
-             font-size: 2.5em; /* Larger size of question mark */
-             color: var(--primary-purple);
-             font-weight: bold;
-             text-shadow: 0 0 10px rgba(255,255,255,0.9); /* Stronger white glow */
-             position: absolute;
-             top: 50%;
-             left: 50%;
-             transform: translate(-50%, -50%);
-             z-index: 2;
-             width: 100%;
-             text-align: center; /* Center the question mark */
-         }
-
-         /* Styles for the actual ticket number element */
-         .ticket .ticket-number {
-             position: absolute;
-             top: 8%; /* Position within the gift box image */
-             left: 8%;
-             background-color: var(--primary-purple);
-             color: var(--primary-yellow);
-             font-size: 0.9em;
-             font-weight: bold;
-             padding: 2px 6px;
-             border-radius: 5px;
-             z-index: 3;
-              transition: opacity 0.4s ease; /* Match content opacity transition */
-         }
-
-        .pick-text {
-            font-size: 1.5em; /* Larger font size */
             margin-top: 20px;
-            color: var(--primary-yellow);
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
-            margin-bottom: 25px; /* Increased margin */
         }
 
-        .available-tickets {
-            margin-bottom: 20px; /* Increased margin */
-            font-size: 1.5em; /* Larger font size */
-            color: #fff;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        #event-header {
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 20px -20px;
         }
-        .available-tickets span {
-            font-weight: bold;
-            color: var(--primary-yellow);
-             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add shadow to numbers */
+        #event-header h1 {
+            font-family: 'Lobster', cursive;
+            margin: 0 0 10px 0;
+            font-size: 3.2em;
+            font-weight: normal;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
         }
-
-        .info-section {
-            margin-top: 30px; /* Increased margin */
-            padding: 25px; /* Increased padding */
-            background-color: rgba(138, 43, 226, 0.85); /* Slightly less transparent purple */
-            border-radius: 18px; /* More rounded corners */
-            text-align: left;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        #countdown-timer {
+            font-size: 1.2em; background-color: rgba(0,0,0,0.25); padding: 10px 15px; border-radius: 5px; display: inline-block;
         }
 
-        .info-section h3 {
-            text-align: center;
-            margin-top: 0;
-            color: var(--primary-yellow);
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-            margin-bottom: 20px; /* Increased margin */
-             font-size: 1.6em; /* Larger font size */
+        h2, h3 { color: #2c3e50; }
+
+        button {
+            background-color: #e74c3c; 
+            color: white; border: none; padding: 12px 20px;
+            border-radius: 6px; cursor: pointer; font-size: 1.05em;
+            margin: 8px 5px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        button:hover { background-color: #c0392b; }
+        button:active { transform: scale(0.98); }
+        button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+        input[type="text"], input[type="email"], input[type="tel"], textarea {
+            padding: 12px; margin: 8px 0 15px 0; border: 1px solid #ccc;
+            border-radius: 6px; width: calc(100% - 26px); box-sizing: border-box;
         }
 
-        .info-section p {
-            margin-bottom: 12px; /* Increased margin */
-            line-height: 1.6;
-            font-size: 1.05em; /* Slightly larger font size */
+        #user-stats p, #dice-area p, #scratch-card-area p, #prize-display-area p {
+            font-size: 1.1em; margin: 10px 0;
+        }
+        #dice-result { font-weight: bold; color: #d35400; font-size: 1.3em; min-height: 30px; }
+
+        #scratch-card-area {
+            margin-top: 20px; padding: 15px; border: 2px dashed #e67e22;
+            background-color: #fdf6e3; border-radius: 8px;
+        }
+        #scratch-card-container {
+            width: 250px; height: 120px; margin: 10px auto; position: relative;
+            border: 1px solid #aaa;
+        }
+        #scratch-canvas { display: block; cursor: crosshair; }
+        #scratch-content-behind {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.1em; padding: 5px; box-sizing: border-box;
+            color: #1a5276; background-color: #eafaf1; border-radius: inherit;
         }
 
-        .info-section ul {
-            padding-left: 35px; /* Increased padding */
-            margin-bottom: 18px; /* Increased margin */
-            font-size: 1.05em; /* Slightly larger font size */
+        #prize-display-area {
+            margin-top: 20px; padding: 20px; border: 2px solid #27ae60;
+            background-color: #e8f8f5; border-radius: 8px; position: relative;
         }
-         .info-section li {
-             margin-bottom: 10px; /* Increased margin */
-         }
+        #win-gift-box { width: 150px; height: auto; margin-bottom: 10px; }
+        #prize-won-text { font-size: 1.5em; font-weight: bold; color: #27ae60; }
 
-        .share-button {
-            display: inline-block;
-            margin: 35px auto; /* Increased margin */
-            padding: 18px 40px; /* Increased padding */
-            background-color: var(--primary-orangered);
-            color: #fff;
-            font-size: 1.4em; /* Larger font size */
-            font-weight: bold;
-            border: none;
-            border-radius: 40px; /* More rounded */
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow */
-        }
+        .section-divider { margin: 30px 0; border-bottom: 1px solid #ddd; }
 
-        .share-button:hover {
-            background-color: #e63e00;
-            transform: translateY(-5px); /* Moves up more */
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
+        #collect-dice-options > div, #prize-registration-section {
+            margin-bottom: 25px; padding: 15px; border: 1px solid #e0e0e0;
+            border-radius: 8px; background-color: #f9f9f9;
         }
-         .share-button:active {
-             transform: translateY(0);
-             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-         }
+        #prize-registration-section button { background-color: #f39c12; }
+        #prize-registration-section button:hover { background-color: #e67e22; }
+        
+        #referral-section .referral-tier { margin-bottom: 15px; }
+        #referral-section .referral-tier button { margin-top: 5px; }
+        .claim-dice-button { background-color: #2ecc71; }
+        .claim-dice-button:hover { background-color: #27ae60; }
 
-        .referral-status {
-            margin-top: 20px; /* Increased margin */
-            text-align: center;
-            font-size: 1.3em; /* Larger font size */
-            color: var(--primary-yellow);
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-            margin-bottom: 25px; /* Increased margin */
+        #runner-game-container {
+            position: relative; width: 400px; height: 200px; margin: 10px auto;
+            border: 2px solid #333; overflow: hidden; background-color: #87CEEB; /* Sky blue fallback */
         }
-        .referral-status span {
-            font-weight: bold;
-            color: #fff;
-             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        #runnerGameCanvas {
+            display: block; /* Remove extra space below canvas if any */
+            /* Position is not needed if it's the only direct child filling the container */
         }
+        #runner-game-score-display { font-weight: bold; }
 
-        /* --- Withdrawal Section Styles --- */
-        .withdrawal-section {
-            margin-top: 35px;
-            padding: 25px;
-            background-color: rgba(138, 43, 226, 0.85);
-            border-radius: 18px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-             transition: all 0.6s ease-in-out;
-             opacity: 1;
-             max-height: 800px; /* Increased max-height to accommodate form */
-             overflow: hidden;
-             text-align: center; /* Center contents */
+        #collect-prize-form, #user-received-prize-form-container {
+            background-color: #f0f5f9; padding: 20px; border-radius: 8px;
+            margin-top: 15px; border: 1px solid #ccd1d9;
+        }
+        #form-message, #user-received-form-message { font-weight: bold; margin-top: 10px; }
+
+        #recent-winners-section {
+            margin-top: 30px; background-color: #fdfefe; padding: 20px;
+            border-radius: 8px; border: 1px solid #e0e0e0;
+        }
+        #winners-list { list-style-type: none; padding: 0; max-height: 250px; overflow-y: auto; }
+        #winners-list li {
+            background-color: #eaf2f8; padding: 10px; margin-bottom: 8px;
+            border-radius: 4px; border-left: 5px solid #e74c3c; text-align: left;
+        }
+        #winners-list li strong { color: #c0392b; }
+
+        .firework-particle {
+            position: absolute; width: 6px; height: 6px;
+            border-radius: 50%; opacity: 0;
+            animation: burst 1s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes burst {
+            0% { transform: scale(0.3) translate(0, 0); opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { transform: scale(1.2) translate(var(--tx), var(--ty)); opacity: 0; }
         }
 
-         .withdrawal-section.hidden {
-            opacity: 0;
-            max-height: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            margin-top: 0;
-            margin-bottom: 0;
-             transition: opacity 0.6s ease-in-out, max-height 0.6s ease-in-out,
-                         padding-top 0.6s ease-in-out, padding-bottom 0.6s ease-in-out,
-                         margin-top 0.6s ease-in-out, margin-bottom 0.6s ease-in-out;
+        .modal {
+            display: none; position: fixed; z-index: 1001; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);
+            padding-top: 60px;
         }
-
-        .withdrawal-section h3 {
-            margin-top: 0;
-            color: var(--primary-yellow);
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-             margin-bottom: 15px;
-             font-size: 1.8em; /* Larger title */
+        .modal-content {
+            background-color: #fefefe; margin: 5% auto; padding: 25px;
+            border: 1px solid #888; width: 80%; max-width: 500px;
+            border-radius: 10px; text-align: center;
         }
-
-        /* Style for the Withdrawal Button */
-        .withdrawal-button {
-            display: inline-block; /* Initially hidden, controlled by JS */
-            margin: 20px auto; /* Center the button */
-             padding: 18px 40px;
-             background-color: var(--primary-green); /* Use green for withdrawal */
-             color: white;
-             font-size: 1.4em;
-             font-weight: bold;
-             border: none;
-             border-radius: 40px;
-             cursor: pointer;
-             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        .close-button {
+            color: #aaa; float: right; font-size: 28px; font-weight: bold;
         }
-        .withdrawal-button:hover {
-             background-color: #228b22; /* ForestGreen */
-              transform: translateY(-5px);
-             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+        .close-button:hover, .close-button:focus {
+            color: black; text-decoration: none; cursor: pointer;
         }
-         .withdrawal-button:active {
-             transform: translateY(0);
-             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-         }
-
-         /* Style for the Withdrawal Form */
-         .withdrawal-form {
-             display: none; /* Initially hidden, shown by JS */
-             text-align: left; /* Align form content left */
-             margin-top: 20px;
-             padding-top: 20px;
-             border-top: 1px solid rgba(255,255,255,0.2); /* Separator line */
-         }
-
-         .withdrawal-form p {
-              font-size: 1.05em;
-              margin-bottom: 20px;
-              color: #ddd;
-              text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-              text-align: center; /* Center paragraph text */
-         }
-
-        .withdrawal-form .form-group {
-             margin-bottom: 18px; /* Increased space between form groups */
-        }
-
-         .withdrawal-form label {
-             display: block; /* Label on its own line */
-             margin-bottom: 8px; /* Space below label */
-             font-size: 1.1em;
-             color: #fff;
-             text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-             font-weight: bold;
-         }
-
-         .withdrawal-form input[type="text"],
-         .withdrawal-form input[type="email"], /* Use email type for Gmail */
-         .withdrawal-form select,
-         .withdrawal-form textarea {
-             width: calc(100% - 24px); /* Adjust for padding */
-             padding: 12px; /* Increased padding */
-             font-size: 1.1em; /* Larger font size */
-             border: none;
-             border-radius: 8px; /* More rounded */
-             background-color: rgba(255, 255, 255, 0.98); /* Almost opaque white */
-             color: #333;
-             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2); /* Deeper inset shadow */
-             transition: box-shadow 0.3s ease;
-         }
-         .withdrawal-form input[type="text"]:focus,
-         .withdrawal-form input[type="email"]:focus,
-         .withdrawal-form select:focus,
-         .withdrawal-form textarea:focus {
-              outline: none;
-              box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 10px rgba(50, 205, 50, 0.8); /* Stronger focus glow */
-         }
-         /* Ensure textarea resizes vertically */
-         .withdrawal-form textarea {
-             resize: vertical;
-             min-height: 80px;
-         }
-
-         .withdrawal-form button[type="submit"] {
-              display: block; /* Make button block for centering */
-              margin: 25px auto 0 auto; /* Center the button and add margin top */
-              padding: 15px 30px;
-              font-size: 1.3em;
-              background-color: var(--primary-green);
-              color: white;
-              border: none;
-              border-radius: 10px;
-              cursor: pointer;
-              transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-          }
-           .withdrawal-form button[type="submit"]:hover {
-               background-color: #228b22;
-                transform: translateY(-3px);
-               box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
-           }
-            .withdrawal-form button[type="submit"]:active {
-               transform: translateY(0);
-               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            }
-
-         /* Submission Success Message */
-         .submission-success {
-             text-align: center;
-             font-size: 1.5em;
-             color: #ccffcc; /* Light green for success */
-             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-             margin-top: 20px;
-         }
-
-         /* Countdown Timer */
-         .countdown-timer {
-             font-size: 1.5em;
-             color: var(--primary-yellow);
-             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-             margin-bottom: 20px; /* Space below timer */
-             font-weight: bold;
-         }
-         .countdown-timer.ended {
-             color: var(--primary-orangered);
-             font-weight: bold;
-         }
-
-        /* Responsive adjustments (Mobile Friendly) */
-        @media (max-width: 600px) {
-             .container {
-                 margin-top: 25px;
-                 padding: 20px;
-                 border-radius: 20px;
-             }
-
-             .banner-container {
-                 margin: 8px auto; /* Less margin on mobile */
-                 max-width: 320px; /* Common mobile banner width */
-                 /* Adsterra might handle this size adjustment automatically based on their code */
-             }
-             .top-banner {
-                  margin-top: 15px;
-             }
-             .bottom-banner {
-                  margin-bottom: 15px;
-             }
-
-             .title-section h1 {
-                 font-size: 3em;
-                  text-shadow:
-                    0 0 12px var(--primary-yellow),
-                    0 0 25px var(--primary-yellow),
-                    0 0 35px var(--primary-purple),
-                    0 0 45px var(--primary-purple),
-                    2px 2px 5px rgba(0, 0, 0, 0.6);
-             }
-              @keyframes neon-title { /* Mobile keyframes */
-                  from {
-                       text-shadow:
-                        0 0 6px var(--primary-yellow),
-                        0 0 12px var(--primary-yellow),
-                        0 0 20px var(--primary-purple),
-                        0 0 25px var(--primary-purple),
-                        1px 1px 4px rgba(0, 0, 0, 0.5);
-                  }
-                  to {
-                      text-shadow:
-                        0 0 12px var(--primary-yellow),
-                        0 0 25px var(--primary-yellow),
-                        0 0 35px var(--primary-purple),
-                        0 0 45px var(--primary-purple),
-                        2px 2px 5px rgba(0, 0, 0, 0.6);
-                  }
-              }
-
-             .title-section h2 {
-                 font-size: 2em;
-             }
-
-             .grand-prize {
-                 font-size: 1.6em;
-                 margin-bottom: 30px;
-             }
-
-            .tickets-grid {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Allows 3 columns on many mobile screens */
-                gap: 15px;
-            }
-            .ticket {
-                 aspect-ratio: 1;
-                 border-radius: 10px;
-                 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-            }
-
-            .ticket .ticket-number {
-                 font-size: 0.8em;
-                 padding: 1px 5px;
-                 top: 6%;
-                 left: 6%;
-             }
-
-             .ticket .ticket-content {
-                 font-size: 2em; /* Size of question mark */
-                 text-shadow: 0 0 8px rgba(255,255,255,0.8);
-             }
-             .ticket.revealed .ticket-content {
-                 font-size: 0.95em; /* Size of prize text */
-                 padding: 6px;
-             }
-
-            .pick-text, .available-tickets, .referral-status {
-                 font-size: 1.3em;
-            }
-             .info-section p, .info-section ul {
-                 font-size: 1em;
-                 line-height: 1.5;
-             }
-             .info-section {
-                 padding: 18px;
-                 border-radius: 15px;
-             }
-             .info-section h3 {
-                  font-size: 1.4em;
-                 margin-bottom: 15px;
-             }
-             .info-section p, .info-section ul {
-                 margin-bottom: 10px;
-             }
-
-            .share-button {
-                 padding: 14px 30px;
-                 font-size: 1.3em;
-                 margin: 30px auto;
-            }
-
-             /* Withdrawal Section (Mobile) */
-             .withdrawal-section {
-                 padding: 20px;
-                 border-radius: 15px;
-             }
-              .withdrawal-section h3 {
-                  font-size: 1.5em;
-             }
-             .withdrawal-button {
-                 padding: 14px 30px;
-                 font-size: 1.3em;
-                 margin: 15px auto;
-             }
-              .withdrawal-form h4 {
-                   font-size: 1.3em;
-                   margin-bottom: 10px;
-              }
-               .withdrawal-form p {
-                   font-size: 0.95em;
-                   margin-bottom: 15px;
-               }
-             .withdrawal-form label {
-                 font-size: 1em;
-             }
-              .withdrawal-form input[type="text"],
-              .withdrawal-form input[type="email"],
-              .withdrawal-form select,
-              .withdrawal-form textarea {
-                  font-size: 1em;
-                  padding: 10px;
-                  width: calc(100% - 20px);
-              }
-              .withdrawal-form button[type="submit"] {
-                  font-size: 1.2em;
-                  padding: 12px 25px;
-              }
-            .submission-success {
-                 font-size: 1.3em;
-            }
-            .countdown-timer {
-                 font-size: 1.3em;
-                 margin-bottom: 15px;
-            }
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- Adsterra Top Banner Ad Container -->
-    <div class="banner-container top-banner">
-        <!-- Adsterra 728x90 Banner Code -->
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'adbcfe51eacd139e7821b7f768acc91d',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//grumpyhopesucceeding.com/adbcfe51eacd139e7821b7f768acc91d/invoke.js"></script>
-    </div>
-
-
-    <div class="container">
-        <div class="title-section">
-            <h1>ঈদ স্পেশাল!</h1>
-            <h2>উপহার বক্স অফার!</h2>
+    <div id="main-container">
+        <div id="event-header">
+            <h1>EID SPECIAL EVENT</h1>
+            <div id="countdown-timer">Event Ends In: Loading...</div>
         </div>
 
-        <div class="grand-prize">
-            গ্র্যান্ড প্রাইজ: অ্যান্ড্রয়েড ফোন!
+        <div id="user-stats">
+            <p>Available Dice: <span id="dice-count">5</span></p>
         </div>
 
-        <div class="available-tickets">
-            আপনার উপহার বক্স সংখ্যা: <span id="availableTicketsCount">0</span>
+        <div class="section-divider"></div>
+
+        <div id="dice-area">
+            <button id="roll-dice-button">Roll Dice!</button>
+            <p id="dice-result">Roll the dice to try your luck!</p>
         </div>
 
-        <div class="tickets-grid" id="ticketsGrid">
-            <!-- Gift boxes will be generated here by JavaScript -->
+        <div id="scratch-card-area" style="display:none;">
+            <h2>Scratch Card!</h2>
+            <div id="scratch-card-container">
+                <div id="scratch-content-behind"></div>
+                <canvas id="scratch-canvas" width="250" height="120"></canvas>
+            </div>
+            <p id="scratch-instructions">Scratch the card to reveal your prize!</p>
         </div>
 
-        <p class="pick-text">
-            একটি উপহার বক্স খুলুন!
-        </p>
-
-        <div class="info-section">
-            <h3>অফারগুলো লুফে নিন!</h3>
-            <p>শেয়ার করার মাধ্যমে বেশি উপহার বক্স উপার্জন করতে পারবেন। সামনে ঈদ তাই বেশি বেশি করে শেয়ার করে জিতে নিন আকর্ষণীয় উপহার!</p>
-            <p>বন্ধুদের ইনভাইট করে ফ্রি উপহার বক্স পান (যতজন ইনভাইট করবেন, সেই অনুযায়ী মোট বক্স পাবেন):</p>
-            <ul>
-                <li>৫ জন বন্ধুকে ইনভাইট করলে: ১টি বক্স</li>
-                <li>১০ জন বন্ধুকে ইনভাইট করলে: মোট ৩টি বক্স (আগের ১টি + নতুন ২টি)</li>
-                <li>২০ জন বন্ধুকে ইনভাইট করলে: মোট ৮টি বক্স (আগের ৩টি + নতুন ৫টি)</li>
-            </ul>
-             <p>২০ জন ইনভাইট সম্পন্ন হলে গ্র্যান্ড প্রাইজ জেতার সুযোগ আনলক হবে!</p>
+        <div id="prize-display-area" style="display:none;">
+            <img src="original_image.png" alt="Gift Box" id="win-gift-box" 
+                 onerror="this.alt='Winning Gift Box!'; this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';"> 
+            <p id="prize-won-text"></p>
+        </div>
+        
+        <div id="collect-prize-form" style="display:none;">
+            <h3>Collect Your Prize</h3>
+            <input type="text" id="collect-user-name" placeholder="Your Name">
+            <input type="email" id="collect-user-email" placeholder="Your Email">
+            <input type="tel" id="collect-user-phone" placeholder="Your Phone Number">
+            <textarea id="collect-user-address" placeholder="Your Full Mailing Address" rows="3"></textarea>
+            <button id="submit-contact-button">Submit Details</button>
+            <p id="form-message"></p>
         </div>
 
-        <button class="share-button" id="shareButton">
-            শেয়ার করুন এবং উপহার বক্স জিতুন!
-        </button>
+        <div class="section-divider"></div>
 
-         <div class="referral-status">
-             আপনার ইনভাইট সংখ্যা: <span id="referralCountDisplay">0</span> জন
-         </div>
-
-         <!-- Referral Goal Text -->
-         <div class="referral-status" id="referralGoalText">
-             <!-- Referral goal text will be updated by JS -->
-         </div>
-
-        <!-- --- Withdrawal Section --- -->
-        <div class="withdrawal-section hidden" id="withdrawalSection">
-            <h3>Win Lottery Withdrawal</h3>
-
-            <!-- Countdown Timer Display -->
-            <div class="countdown-timer" id="countdownTimer">
-                 সময় বাকি: -- দিন --:--:--
+        <div id="collect-dice-options">
+            <h2>Get More Dice!</h2>
+            <div id="runner-game-section">
+                <h3>1. Play Runner Game for Dice</h3>
+                <div id="runner-game-container">
+                    <canvas id="runnerGameCanvas" width="400" height="200"></canvas>
+                </div>
+                <p>Score: <span id="runner-game-score-display">0</span>. Reach 2000 points for 2 Dice!</p>
+                <p id="runner-game-status">Click "Start Game" to play. Use Spacebar or Tap to Jump.</p>
+                <button id="start-runner-game-button">Start Game</button>
             </div>
 
-            <!-- This section will contain either the button, the form, or the success message -->
-             <button class="withdrawal-button" id="withdrawalButton">
-                 Withdrawal Win Lottery
-             </button>
+            <div id="prize-registration-section">
+                <h3>Prize Eligibility</h3>
+                <p>Register your details to be eligible for prize draws.</p>
+                <button id="open-prize-registration-modal-button">Register Your Details</button>
+            </div>
 
-             <div class="withdrawal-form" id="withdrawalForm">
-                 <h4>আপনার উইনিং দাবি করুন!</h4>
-                 <p>আপনার ঠিকানা অনুযায়ী আমরা আপনার সাথে যোগাযোগ করব। সঠিক তথ্য দিন।</p> <!-- Updated message -->
-                 <div class="form-group">
-                     <label for="userName">আপনার নাম:</label>
-                     <input type="text" id="userName" required>
-                 </div>
-                 <div class="form-group">
-                      <label for="userCountry">আপনার দেশ:</label>
-                      <select id="userCountry" required>
-                          <option value="">-- দেশ নির্বাচন করুন --</option>
-                           <!-- Commonly requested SAARC + SE Asia countries -->
-                          <option value="Bangladesh">বাংলাদেশ</option>
-                          <option value="India">ভারত</option>
-                          <option value="Pakistan">পাকিস্তান</option>
-                          <option value="Sri Lanka">শ্রীলঙ্কা</option>
-                          <option value="Nepal">নেপাল</option>
-                          <option value="Bhutan">ভুটান</option>
-                           <option value="Myanmar">মায়ানমার</option>
-                           <option value="Thailand">থাইল্যান্ড</option>
-                           <option value="Malaysia">মালয়েশিয়া</option>
-                           <option value="Indonesia">ইন্দোনেশিয়া</option>
-                           <option value="Singapore">সিঙ্গাপুর</option>
-                           <option value="Philippines">ফিলিপাইন</option>
-                           <option value="Vietnam">ভিয়েতনাম</option>
-                           <option value="Cambodia">কম্বোডিয়া</option>
-                           <option value="Laos">লাওস</option>
-                           <option value="Brunei">ব্রুনাই</option>
-                           <option value="Timor-Leste">পূর্ব তিমুর</option>
-                           <option value="Other">অন্যান্য দেশ</option> <!-- Added 'Other' option -->
-                      </select>
-                 </div>
-                 <div class="form-group">
-                      <label for="userAddress">আপনার ঠিকানা:</label>
-                      <textarea id="userAddress" rows="3" required></textarea>
-                 </div>
-                 <div class="form-group">
-                     <label for="userGmail">আপনার ইমেইল (Gmail):</label> <!-- Changed label -->
-                     <input type="email" id="userGmail" required> <!-- Changed type and ID -->
-                 </div>
-                 <button type="submit" id="submitWithdrawal">জমা দিন</button>
-             </div>
-            <!-- Success message will be inserted here by JS -->
-             <div class="submission-success hidden" id="submissionSuccessMessage">
-                  আপনার তথ্য সফলভাবে জমা নেওয়া হয়েছে!
-             </div>
+            <div id="referral-section">
+                <h3>2. Refer Friends for Dice</h3>
+            </div>
         </div>
 
+        <div class="section-divider"></div>
+        
+        <div id="recent-winners-section">
+            <h2>Recent Winners 🏆</h2>
+            <ul id="winners-list"></ul>
+        </div>
 
-    </div> <!-- .container -->
-
-    <!-- Adsterra Bottom Banner Ad Container -->
-    <div class="banner-container bottom-banner">
-         <!-- Adsterra 728x90 Banner Code -->
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'adbcfe51eacd139e7821b7f768acc91d',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//grumpyhopesucceeding.com/adbcfe51eacd139e7821b7f768acc91d/invoke.js"></script>
+        <div class="section-divider"></div>
+        <button id="share-button">Share Event with Friends! 📲</button>
     </div>
 
-
-    <!-- Adsterra Social Bar Ad Script -->
-    <script type='text/javascript' src='//grumpyhopesucceeding.com/06/02/5f/06025f0d45975648f726adcf793432dc.js'></script>
-
+    <!-- Modal for "User Received Prize" -->
+    <div id="user-received-prize-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-user-received-modal">&times;</span>
+            <h3>Register Your Details</h3>
+            <div id="user-received-prize-form-container">
+                <input type="text" id="reg-user-name" placeholder="Your Full Name">
+                <input type="email" id="reg-user-email" placeholder="Your Email Address">
+                <input type="tel" id="reg-user-phone" placeholder="Your Phone Number">
+                <textarea id="reg-user-address" placeholder="Your Full Mailing Address" rows="3"></textarea>
+                <button id="submit-registration-button">Register</button>
+                <p id="user-received-form-message"></p>
+            </div>
+        </div>
+    </div>
 
     <script>
-        const ticketsGrid = document.getElementById('ticketsGrid');
-        const availableTicketsCountSpan = document.getElementById('availableTicketsCount');
-        const shareButton = document.getElementById('shareButton');
-        const referralCountDisplaySpan = document.getElementById('referralCountDisplay');
-        const referralGoalTextDiv = document.getElementById('referralGoalText');
+        // --- DOM Elements ---
+        const diceCountEl = document.getElementById('dice-count');
+        const rollDiceButton = document.getElementById('roll-dice-button');
+        const diceResultEl = document.getElementById('dice-result');
+        const scratchCardArea = document.getElementById('scratch-card-area');
+        const scratchCanvas = document.getElementById('scratch-canvas');
+        const scratchCtx = scratchCanvas.getContext('2d');
+        const scratchContentBehindEl = document.getElementById('scratch-content-behind');
+        const prizeDisplayArea = document.getElementById('prize-display-area');
+        const prizeWonTextEl = document.getElementById('prize-won-text');
+        const collectPrizeForm = document.getElementById('collect-prize-form');
+        const collectUserNameInput = document.getElementById('collect-user-name');
+        const collectUserEmailInput = document.getElementById('collect-user-email');
+        const collectUserPhoneInput = document.getElementById('collect-user-phone');
+        const collectUserAddressInput = document.getElementById('collect-user-address');
+        const submitContactButton = document.getElementById('submit-contact-button');
+        const formMessageEl = document.getElementById('form-message');
+        const runnerGameCanvas = document.getElementById('runnerGameCanvas');
+        const runnerGameCtx = runnerGameCanvas.getContext('2d');
+        const runnerGameScoreDisplayEl = document.getElementById('runner-game-score-display');
+        const startRunnerGameButton = document.getElementById('start-runner-game-button');
+        const runnerGameStatusEl = document.getElementById('runner-game-status');
+        const referralSectionEl = document.getElementById('referral-section');
+        const shareButton = document.getElementById('share-button');
+        const countdownTimerEl = document.getElementById('countdown-timer');
+        const winnersListEl = document.getElementById('winners-list');
+        const openPrizeRegistrationModalButton = document.getElementById('open-prize-registration-modal-button');
+        const userReceivedPrizeModal = document.getElementById('user-received-prize-modal');
+        const closeUserReceivedModalButton = document.getElementById('close-user-received-modal');
+        const regUserNameInput = document.getElementById('reg-user-name');
+        const regUserEmailInput = document.getElementById('reg-user-email');
+        const regUserPhoneInput = document.getElementById('reg-user-phone');
+        const regUserAddressInput = document.getElementById('reg-user-address');
+        const submitRegistrationButton = document.getElementById('submit-registration-button');
+        const userReceivedFormMessageEl = document.getElementById('user-received-form-message');
 
-        // Elements for Withdrawal Section
-        const withdrawalSection = document.getElementById('withdrawalSection');
-        const countdownTimerDiv = document.getElementById('countdownTimer');
-        const withdrawalButton = document.getElementById('withdrawalButton');
-        const withdrawalForm = document.getElementById('withdrawalForm');
-        const userNameInput = document.getElementById('userName');
-        const userCountrySelect = document.getElementById('userCountry');
-        const userAddressInput = document.getElementById('userAddress');
-        const userGmailInput = document.getElementById('userGmail');
-        const submitWithdrawalButton = document.getElementById('submitWithdrawal');
-        const submissionSuccessMessageDiv = document.getElementById('submissionSuccessMessage');
+        // --- Game State & Config ---
+        let diceCount = 5;
+        const LUCKY_NUMBER_FOR_SCRATCH_CARD = 6;
+        let runnerGameActive = false;
+        let runnerGameScore = 0;
+        let runnerGameLoopId; // For requestAnimationFrame
 
-
-        // --- Local Storage Keys (Updated versioning v7) ---
-        const STORAGE_LAST_DRAW_DATE = 'eidGiftDrawLastDate_v7';
-        const STORAGE_DAILY_DRAW_DONE = 'eidGiftDailyDrawDone_v7';
-        const STORAGE_REFERRAL_COUNT = 'eidGiftReferralCount_v7';
-        const STORAGE_AVAILABLE_TICKETS = 'eidGiftAvailableBoxes_v7';
-        const STORAGE_REVEALED_TICKETS = 'eidGiftRevealedBoxes_v7';
-        const STORAGE_REFERRAL_TICKETS_EARNED_TOTAL = 'eidGiftReferralBoxesEarnedTotal_v7';
-        const STORAGE_IS_GRAND_PRIZE_REVEALED = 'eidGiftGrandPrizeRevealed_v7';
-        const STORAGE_IS_WITHDRAWAL_FORM_SUBMITTED = 'eidGiftWithdrawalFormSubmitted_v7';
-        const STORAGE_COUNTDOWN_END = 'eidGiftCountdownEnd_v7';
-
-
-        // --- Game State Variables ---
-        let dailyDrawDone = false;
-        let referralCount = 0;
-        let availableTickets = 0;
-        let revealedTickets = [];
-        let referralTicketsEarnedTotal = 0;
-        let isGrandPrizeRevealed = false;
-        let isWithdrawalFormSubmitted = false;
-        let countdownEndTime = null;
-
-
-        // --- Prizes (Updated for 12 boxes) ---
-        // Index corresponds to box number 0-11
-        const prizes = [
-            "খালি",         // Box 1 (Index 0)
-            "১ জিবি ডাটা",  // Box 2 (Index 1)
-            "খালি",         // Box 3 (Index 2)
-            "৫০০ টাকা",     // Box 4 (Index 3)
-            "খালি",         // Box 5 (Index 4)
-            "১ জিবি ডাটা",  // Box 6 (Index 5)
-            "খালি",        // Box 7 (Index 6)
-            "১০০০ টাকা",    // Box 8 (Index 7)
-            "খালি",        // Box 9 (Index 8)
-            "অ্যান্ড্রয়েড ফোন", // Box 10 (Index 9) - Grand Prize (Remains at index 9)
-            "খালি",        // Box 11 (Index 10)
-            "৫০০ টাকা"     // Box 12 (Index 11)
+        const prizeListForJS = [
+            { name: "Grand Prize: Eid Shopping Spree (৳50,000) 🛍️", isGrand: true }, { name: "Grand Prize: Latest Smartphone 📱", isGrand: true },
+            { name: "Grand Prize: 4K Smart TV 📺", isGrand: true }, { name: "Premium Wireless Earbuds 🎧", isGrand: false },
+            { name: "Smartwatch Fitness Tracker ⌚", isGrand: false }, { name: "৳5000 Gift Voucher 💳", isGrand: false },
+            { name: "Bluetooth Soundbar 🔊", isGrand: false }, { name: "Large Capacity Power Bank 🔋", isGrand: false },
+            { name: "Eid Special Dinner Set 🍽️", isGrand: false }, { name: "Gaming Keyboard & Mouse Combo 🖱️", isGrand: false },
+            { name: "20 Extra Dice! 🎲", isGrand: false }, { name: "Luxury Eid Gift Basket 🧺", isGrand: false }
         ];
-        const GRAND_PRIZE_INDEX = 9; // Index of the Android Phone box
-        const NUM_TICKETS = prizes.length; // Automatically becomes 12
+        const referralTiersForJS = [
+            { friends: 3, dice: 2, id: 'ref3' }, { friends: 5, dice: 5, id: 'ref5' }, { friends: 10, dice: 12, id: 'ref10' },
+            { friends: 20, dice: 25, id: 'ref20' }, { friends: 50, dice: 65, id: 'ref50' }, { friends: 100, dice: 100, id: 'ref100' }
+        ];
+        let claimedReferrals = {};
 
-        // --- Referral Tiers (Cumulative Total Boxes Earned) ---
-        const referralTicketTotals = {
-            5: 1,
-            10: 3,
-            20: 8
+        // --- Runner Game (Shadow Man) Specifics ---
+        const PLAYER_GAME_SCORE_MILESTONE = 2000;
+        const PLAYER_GAME_DICE_REWARD = 2;
+        let player = { 
+            x: 50, y: runnerGameCanvas.height - 40 - 10, 
+            width: 15, height: 40, color: '#333', // Shadow Man
+            dy: 0, gravity: 0.4, jumpPower: -9.5, // Further lowered difficulty
+            isJumping: false, onGround: true 
         };
-        const REFERRAL_GOAL_FOR_WITHDRAWAL = 20;
-        const COUNTDOWN_DURATION_DAYS = 20; // Duration for the timer
+        const playerObstacles = [];
+        let playerObstacleSpawnTimer = 0;
+        const PLAYER_OBSTACLE_SPAWN_INTERVAL_INITIAL = 250; // Even Slower obstacle spawn
+        let currentPlayerObstacleSpawnInterval = PLAYER_OBSTACLE_SPAWN_INTERVAL_INITIAL;
+        let playerObstacleSpeed = 1.5; // Even Slower initial obstacle speed
+        const GROUND_Y = runnerGameCanvas.height - 10; 
 
-        // --- Direct Link Redirect Configuration ---
-        const DIRECT_LINK_URL = 'https://grumpyhopesucceeding.com/j9fsftpf72?key=7a528a7eb115b73149357237981fb657';
-        const DIRECT_LINK_DELAY_MS = 2 * 60 * 1000; // 2 minutes in milliseconds
-        let directLinkTimeoutId = null; // To hold the timeout ID
+        // --- Parallax Background for Runner Game ---
+        const bgLayers = [
+            { color: '#2c3e50', speedModifier: 0.08, minH: 60, maxH: 120, minW: 20, maxW: 40, density: 0.2, items: [] },
+            { color: '#34495e', speedModifier: 0.15, minH: 50, maxH: 100, minW: 25, maxW: 50, density: 0.3, items: [] },
+            { color: '#566573', speedModifier: 0.25, minH: 40, maxH: 80,  minW: 30, maxW: 60, density: 0.4, items: [] }
+        ];
 
-
-        // --- Helper Functions ---
-
-        // Get today's date in YYYY-MM-DD format
-        function getTodayDate() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = (now.getMonth() + 1).toString().padStart(2, '0');
-            const day = now.getDate().toString().padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
-         // Calculate total boxes earned from referrals based on current count
-        function calculateReferralTicketsEarned(count) {
-             let totalEarned = 0;
-             if (count >= 5) totalEarned = Math.max(totalEarned, referralTicketTotals[5] || 0);
-             if (count >= 10) totalEarned = Math.max(totalEarned, referralTicketTotals[10] || 0);
-             if (count >= 20) totalEarned = Math.max(totalEarned, referralTicketTotals[20] || 0);
-             return totalEarned;
-        }
-
-        // Save game state to localStorage
-        function saveGameState() {
-            localStorage.setItem(STORAGE_DAILY_DRAW_DONE, dailyDrawDone);
-            localStorage.setItem(STORAGE_LAST_DRAW_DATE, getTodayDate());
-            localStorage.setItem(STORAGE_REFERRAL_COUNT, referralCount);
-            localStorage.setItem(STORAGE_AVAILABLE_TICKETS, availableTickets);
-            localStorage.setItem(STORAGE_REVEALED_TICKETS, JSON.stringify(revealedTickets));
-            localStorage.setItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL, referralTicketsEarnedTotal);
-            localStorage.setItem(STORAGE_IS_GRAND_PRIZE_REVEALED, isGrandPrizeRevealed);
-            localStorage.setItem(STORAGE_IS_WITHDRAWAL_FORM_SUBMITTED, isWithdrawalFormSubmitted);
-            // Save countdown end time if set
-            if (countdownEndTime) {
-                localStorage.setItem(STORAGE_COUNTDOWN_END, countdownEndTime.toISOString());
-            } else {
-                 localStorage.removeItem(STORAGE_COUNTDOWN_END);
-            }
-        }
-
-        // Load game state from localStorage
-        function loadGameState() {
-            const today = getTodayDate();
-            const lastDrawDate = localStorage.getItem(STORAGE_LAST_DRAW_DATE);
-
-            // Load basic counts and revealed status
-            referralCount = parseInt(localStorage.getItem(STORAGE_REFERRAL_COUNT) || '0');
-            availableTickets = parseInt(localStorage.getItem(STORAGE_AVAILABLE_TICKETS) || '0');
-            revealedTickets = JSON.parse(localStorage.getItem(STORAGE_REVEALED_TICKETS) || '[]');
-            referralTicketsEarnedTotal = parseInt(localStorage.getItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL) || '0');
-
-            // Load new state variables
-            isGrandPrizeRevealed = localStorage.getItem(STORAGE_IS_GRAND_PRIZE_REVEALED) === 'true';
-            isWithdrawalFormSubmitted = localStorage.getItem(STORAGE_IS_WITHDRAWAL_FORM_SUBMITTED) === 'true';
-
-            // Load countdown end time
-             const storedCountdownEnd = localStorage.getItem(STORAGE_COUNTDOWN_END);
-             if (storedCountdownEnd) {
-                 countdownEndTime = new Date(storedCountdownEnd);
-                 // Check if the loaded date is valid, if not reset
-                 if (isNaN(countdownEndTime.getTime())) {
-                      console.warn("Invalid stored countdown date, resetting.");
-                      countdownEndTime = null;
-                 }
-             }
-
-            // Check for new day OR if this is the very first visit
-            if (lastDrawDate !== today) {
-                // New day
-                dailyDrawDone = false; // Allow daily box for today
-
-                // Grant daily box ONLY if not already granted for today based on STORAGE_DAILY_DRAW_DONE
-                 // Check explicitly against 'true' to handle null/undefined on first load
-                 if (localStorage.getItem(STORAGE_DAILY_DRAW_DONE) !== 'true') {
-                     availableTickets += 1; // Grant 1 daily box
-                     dailyDrawDone = true; // Mark as done for today
-                 } // else: dailyDrawDone state remains whatever was loaded or default false
-
-                 // Revealed tickets, Grand Prize state, Form submission state persist across days.
-
-                 // Ensure revealedTickets only contains valid indices (0 to NUM_TICKETS-1)
-                 revealedTickets = revealedTickets.filter(index => index >= 0 && index < NUM_TICKETS);
-
-            } else {
-                // Same day - Load state as is
-                dailyDrawDone = localStorage.getItem(STORAGE_DAILY_DRAW_DONE) === 'true';
-                 // Ensure revealedTickets only contains valid indices (0 to NUM_TICKETS-1)
-                 revealedTickets = revealedTickets.filter(index => index >= 0 && index < NUM_TICKETS);
-            }
-
-             // --- Consistency Checks / Adjustments on Load ---
-
-             // Ensure boxes earned from referrals match the current referral count
-             const targetReferralTicketsTotal = calculateReferralTicketsEarned(referralCount);
-             if (targetReferralTicketsTotal > referralTicketsEarnedTotal) {
-                 const newReferralTickets = targetReferralTicketsTotal - referralTicketsEarnedTotal;
-                 availableTickets += newReferralTickets;
-                 referralTicketsEarnedTotal = targetReferralTicketsTotal;
-             }
-
-            // Ensure availableTickets doesn't go below 0
-            if (availableTickets < 0) availableTickets = 0;
-
-             // Ensure Grand Prize revealed state is correct based on revealedTickets
-             if (!isGrandPrizeRevealed && revealedTickets.includes(GRAND_PRIZE_INDEX)) {
-                 isGrandPrizeRevealed = true;
-             }
-
-             // Initialize countdown if not already set OR if it ended previously (start fresh for a new event)
-             // A simple check is if it's null or in the past. Resetting if in the past means a new 20-day cycle starts on load after expiration.
-             const now = new Date();
-             if (!countdownEndTime || countdownEndTime.getTime() < now.getTime()) {
-                  console.log("Initializing or resetting countdown timer.");
-                  countdownEndTime = new Date(now.getTime() + COUNTDOWN_DURATION_DAYS * 24 * 60 * 60 * 1000);
-             }
-
-
-             // Save the potentially updated state (e.g., if new day, referral tickets credited, state fixed, or countdown initialized/reset)
-            saveGameState();
-        }
-
-        // Update UI elements
-        function updateUI() {
-            availableTicketsCountSpan.textContent = availableTickets;
-            referralCountDisplaySpan.textContent = referralCount;
-
-             // Update referral goal text
-             let nextGoal = null;
-             let ticketsAtNextGoal = 0;
-             const currentEarnedTickets = calculateReferralTicketsEarned(referralCount);
-
-             if (referralCount < 5) {
-                 nextGoal = 5;
-                 ticketsAtNextGoal = referralTicketTotals[5] || 0;
-             } else if (referralCount < 10) {
-                 nextGoal = 10;
-                 ticketsAtNextGoal = referralTicketTotals[10] || 0;
-             } else if (referralCount < 20) {
-                 nextGoal = 20;
-                 ticketsAtNextGoal = referralTicketTotals[20] || 0;
-             }
-
-             if (nextGoal !== null && referralCount < REFERRAL_GOAL_FOR_WITHDRAWAL) {
-                  const ticketsToEarnAtNextGoal = ticketsAtNextGoal - currentEarnedTickets;
-                  if (ticketsToEarnAtNextGoal > 0) {
-                       referralGoalTextDiv.textContent = `আর ${nextGoal - referralCount} জন ইনভাইট করলে মোট ${ticketsAtNextGoal}টি উপহার বক্স পাবেন!`;
-                  } else {
-                       referralGoalTextDiv.textContent = `আর ${nextGoal - referralCount} জন ইনভাইট করলে আপনি পরবর্তী পুরস্কার পাবেন!`;
-                  }
-             } else if (referralCount >= REFERRAL_GOAL_FOR_WITHDRAWAL){
-                 referralGoalTextDiv.textContent = `অভিনন্দন! আপনার ইনভাইট লক্ষ্য পূরণ হয়েছে।`;
-             } else {
-                  referralGoalTextDiv.textContent = '';
-             }
-
-
-            // Update ticket grid appearance
-            renderTickets();
-
-            // --- Control Withdrawal Section Visibility & Content ---
-            if (isGrandPrizeRevealed) {
-                 withdrawalSection.classList.remove('hidden'); // Show the section container
-
-                 if (isWithdrawalFormSubmitted) {
-                     // If already submitted, hide button and form, show success message
-                     withdrawalButton.style.display = 'none';
-                     withdrawalForm.style.display = 'none';
-                     submissionSuccessMessageDiv.classList.remove('hidden');
-
-                     // Disable form fields just in case
-                     userNameInput.disabled = true;
-                     userCountrySelect.disabled = true;
-                     userAddressInput.disabled = true;
-                     userGmailInput.disabled = true;
-                     submitWithdrawalButton.disabled = true;
-
-                 } else {
-                     // If prize revealed but not submitted, show the button initially
-                      withdrawalButton.style.display = 'block';
-                      withdrawalForm.style.display = 'none'; // Keep form hidden until button is clicked
-                      submissionSuccessMessageDiv.classList.add('hidden');
-
-                      // Ensure form fields are enabled if not submitted (they will be hidden anyway)
-                      userNameInput.disabled = false;
-                      userCountrySelect.disabled = false;
-                      userAddressInput.disabled = false;
-                      userGmailInput.disabled = false;
-                      submitWithdrawalButton.disabled = false;
-                 }
-
-            } else {
-                // If Grand Prize not revealed, hide the entire section
-                 withdrawalSection.classList.add('hidden');
-                 withdrawalButton.style.display = 'none'; // Ensure button is hidden
-                 withdrawalForm.style.display = 'none'; // Ensure form is hidden
-                 submissionSuccessMessageDiv.classList.add('hidden'); // Ensure success message is hidden
-            }
-
-            // Check countdown state and potentially hide button/form if expired
-            const now = new Date().getTime();
-             if (countdownEndTime && countdownEndTime.getTime() < now) {
-                  // Timer has ended
-                  if (!isWithdrawalFormSubmitted) {
-                       withdrawalButton.style.display = 'none'; // Hide button
-                       withdrawalForm.style.display = 'none'; // Hide form
-                       submissionSuccessMessageDiv.classList.add('hidden'); // Ensure success hidden
-
-                        // Add a message indicating submission is closed if not already there
-                       if (!document.getElementById('submissionClosedMessage')) {
-                           const closedMsg = document.createElement('p');
-                           closedMsg.id = 'submissionClosedMessage';
-                           closedMsg.style.color = 'orangered';
-                           closedMsg.textContent = 'দাবি করার সময় শেষ, আপনার তথ্য জমা নেওয়া যাচ্ছে না।';
-                           withdrawalSection.appendChild(closedMsg);
-                       }
-                  }
-             } else {
-                 // Timer is still running, remove any previous closed message
-                 const existingClosedMsg = document.getElementById('submissionClosedMessage');
-                 if(existingClosedMsg) existingClosedMsg.remove();
-             }
-
-
-        }
-
-        // Render the ticket grid
-        function renderTickets() {
-            ticketsGrid.innerHTML = ''; // Clear current grid
-            for (let i = 0; i < NUM_TICKETS; i++) {
-                const ticket = document.createElement('div');
-                ticket.classList.add('ticket');
-                ticket.dataset.index = i; // Store original index
-
-                // Add Ticket Number
-                const ticketNumber = document.createElement('div');
-                ticketNumber.classList.add('ticket-number');
-                ticketNumber.textContent = i + 1; // Display box number (1-based)
-                ticket.appendChild(ticketNumber);
-
-                const content = document.createElement('div');
-                content.classList.add('ticket-content');
-
-
-                const isRevealed = revealedTickets.includes(i);
-
-                if (isRevealed) {
-                    // If already revealed, set the revealed state immediately
-                    content.textContent = prizes[i]; // Show prize
-                    ticket.classList.add('revealed');
-                    ticket.classList.add('disabled'); // Cannot click revealed boxes
-                    // Make number and content visible immediately
-                    ticketNumber.style.opacity = 1;
-                    content.style.opacity = 1;
-
-                } else {
-                    // If not revealed, show '?' visually (will be hidden by default CSS initially)
-                    content.textContent = '?';
-                    // Add click handler only if not revealed
-                    ticket.addEventListener('click', handleTicketClick);
-
-                    // Disable click if no boxes are available
-                    if (availableTickets <= 0) {
-                        ticket.classList.add('disabled');
+        function initParallaxLayers() {
+            bgLayers.forEach(layer => {
+                layer.items = []; let currentX = 0;
+                while (currentX < runnerGameCanvas.width * 2.5) { // Populate more for very slow layers
+                    if (Math.random() < layer.density) {
+                        const height = Math.random() * (layer.maxH - layer.minH) + layer.minH;
+                        const width = Math.random() * (layer.maxW - layer.minW) + layer.minW;
+                        layer.items.push({ x: currentX, y: GROUND_Y - height, width: width, height: height });
                     }
-                     // Number and content opacity handled by default CSS (opacity: 0)
+                    currentX += Math.random() * 80 + 40; // Wider random spacing
                 }
-
-                ticket.appendChild(content); // Content is appended after number
-
-                ticketsGrid.appendChild(ticket);
-            }
+            });
         }
 
-        // --- Countdown Timer Functions ---
-        let countdownInterval = null;
-
-        function updateCountdownDisplay() {
-            const now = new Date().getTime(); // Get current time in milliseconds
-            const distance = countdownEndTime.getTime() - now; // Time remaining
-
-            if (distance < 0) {
-                // Timer ended
-                clearInterval(countdownInterval);
-                countdownTimerDiv.textContent = "সময় শেষ!";
-                countdownTimerDiv.classList.add('ended');
-                 // Update UI state based on timer ending (hides button/form if not submitted)
-                updateUI(); // Call updateUI to handle visibility based on ended timer
-                return;
-            }
-
-            // Calculate time units
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result
-            countdownTimerDiv.textContent = `সময় বাকি: ${days} দিন ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-             countdownTimerDiv.classList.remove('ended'); // Ensure class is removed if time is remaining
+        function drawParallaxBackground() {
+            runnerGameCtx.fillStyle = '#87CEEB'; // Sky Blue
+            runnerGameCtx.fillRect(0, 0, runnerGameCanvas.width, runnerGameCanvas.height);
+            bgLayers.forEach(layer => {
+                runnerGameCtx.fillStyle = layer.color;
+                layer.items.forEach(item => { runnerGameCtx.fillRect(item.x, item.y, item.width, item.height); });
+            });
         }
 
+        function updateParallaxBackground() {
+            bgLayers.forEach(layer => {
+                layer.items.forEach(item => { item.x -= playerObstacleSpeed * layer.speedModifier; });
+                layer.items = layer.items.filter(item => item.x + item.width > 0);
+                let lastItemX = layer.items.length > 0 ? layer.items[layer.items.length - 1].x + layer.items[layer.items.length - 1].width : 0;
+                while (lastItemX < runnerGameCanvas.width * 2) {
+                    if (Math.random() < layer.density) {
+                        const spacing = Math.random() * 80 + 40;
+                        const height = Math.random() * (layer.maxH - layer.minH) + layer.minH;
+                        const width = Math.random() * (layer.maxW - layer.minW) + layer.minW;
+                        layer.items.push({ x: lastItemX + spacing, y: GROUND_Y - height, width: width, height: height });
+                        lastItemX += spacing + width;
+                    } else { // Add some empty space if density check fails
+                        lastItemX += Math.random() * 50 + 20;
+                    }
+                     if (layer.items.length > 30) break; // Prevent infinite loop for dense, slow layers
+                }
+            });
+        }
+        
+        // --- UI Update ---
+        function updateDiceCountUI() { diceCountEl.textContent = diceCount; rollDiceButton.disabled = diceCount <= 0; }
+
+        // --- Countdown Timer ---
         function startCountdown() {
-             if (countdownInterval) clearInterval(countdownInterval); // Clear any existing timer
-             updateCountdownDisplay(); // Initial call to display immediately
-             countdownInterval = setInterval(updateCountdownDisplay, 1000); // Update every second
-        }
-
-        // --- Direct Link Redirect Function ---
-        function startDirectLinkTimer() {
-             // Clear any existing timer just in case
-             if (directLinkTimeoutId) {
-                  clearTimeout(directLinkTimeoutId);
-             }
-             directLinkTimeoutId = setTimeout(() => {
-                 console.log("Redirecting to direct link...");
-                 window.location.href = DIRECT_LINK_URL;
-             }, DIRECT_LINK_DELAY_MS);
-             console.log(`Direct link redirect scheduled in ${DIRECT_LINK_DELAY_MS / 1000} seconds.`); // For testing
-        }
-
-
-        // --- Event Handlers ---
-
-        function handleTicketClick(event) {
-            const clickedTicket = event.currentTarget;
-            const ticketIndex = parseInt(clickedTicket.dataset.index);
-
-            // Prevent clicking if disabled or already revealed
-            if (clickedTicket.classList.contains('disabled') || clickedTicket.classList.contains('revealed')) {
-                 if (availableTickets <= 0 && !clickedTicket.classList.contains('revealed')) {
-                      alert("আপনার কাছে পর্যাপ্ত উপহার বক্স নেই! আরও বক্স জিততে শেয়ার করুন।");
-                 }
-                 return;
+            const eventEndDate = new Date();
+            eventEndDate.setDate(eventEndDate.getDate() + Math.floor(Math.random()*10) + 15); // Min 15 days
+            eventEndDate.setHours(Math.floor(Math.random()*24)); eventEndDate.setMinutes(Math.floor(Math.random()*60)); eventEndDate.setSeconds(Math.floor(Math.random()*60));
+            function updateTimer() {
+                const now = new Date().getTime(); const distance = eventEndDate - now;
+                if (distance < 0) { countdownTimerEl.textContent = "EVENT ENDED"; rollDiceButton.disabled = true; startRunnerGameButton.disabled = true; return; }
+                const d = Math.floor(distance/(1e3*60*60*24)), h = Math.floor((distance%(1e3*60*60*24))/(1e3*60*60));
+                const m = Math.floor((distance%(1e3*60*60))/(1e3*60)), s = Math.floor((distance%(1e3*60))/1e3);
+                countdownTimerEl.textContent = `Ends In: ${d}d ${h}h ${m}m ${s}s`;
+                if(document.hidden) return; // Don't update if tab is not visible
+                requestAnimationFrame(updateTimer);
             }
+            updateTimer();
+        }
+        
+        // --- Recent Winners ---
+        function populateWinnersList() {
+            const sampleWinners = [
+                { name: "Abdullah Al Mamun", prize: "Eid Shopping Voucher ৳15000" }, { name: "Fatima Akter", prize: "Samsung Galaxy A55" },
+                { name: "Rizwan Khan", prize: "Sony 4K TV 43\"" }, { name: "Sumaiya Islam", prize: "Premium Bluetooth Headphones" },
+                { name: "Tariq Ahmed", prize: "৳3000 bKash Cashback" }, { name: "Nadia Chowdhury", prize: "Exclusive Eid Saree" },
+                { name: "Zayn Hasan", prize: "Smart Fitness Band" }, { name: "Ishrat Jahan", prize: "Luxury Perfume Set" },
+                { name: "Mehedi Hasan", prize: "Gaming Mouse & Keyboard" }, { name: "Ayesha Siddiqua", prize: "৳1000 Mobile Recharge" },
+                { name: "Kamal Uddin", prize: "Dinner Set for Family" }, { name: "Sabiha Noor", prize: "Power Bank 20000mAh" }
+            ];
+            winnersListEl.innerHTML = ''; const shuffled = sampleWinners.sort(() => .5 - Math.random());
+            shuffled.forEach(w => { const li = document.createElement('li'); li.innerHTML = `<strong>${w.name}</strong> won ${w.prize}! 🎉`; winnersListEl.appendChild(li); });
+        }
 
-             clickedTicket.classList.add('disabled');
-             clickedTicket.removeEventListener('click', handleTicketClick);
-
-            const revealDelay = 1000;
-
-            setTimeout(() => {
-                availableTickets--;
-                availableTickets = Math.max(0, availableTickets);
-
-                if (!revealedTickets.includes(ticketIndex)) {
-                     revealedTickets.push(ticketIndex);
+        // --- Dice Rolling ---
+        rollDiceButton.addEventListener('click', () => {
+            if (diceCount <= 0) return; diceCount--; updateDiceCountUI(); rollDiceButton.disabled = true;
+            hideScratchCard(); prizeDisplayArea.style.display = 'none'; collectPrizeForm.style.display = 'none'; formMessageEl.textContent = '';
+            let flashCount = 0; const maxFlashes = 8;
+            const flashInterval = setInterval(() => {
+                diceResultEl.textContent = `Rolling... ${Math.floor(Math.random() * 6) + 1} 🎲`;
+                if (++flashCount >= maxFlashes) {
+                    clearInterval(flashInterval); const roll = Math.floor(Math.random() * 6) + 1;
+                    if (roll === LUCKY_NUMBER_FOR_SCRATCH_CARD) {
+                        diceResultEl.textContent = `You rolled a ${roll}! 🎉 Lucky Number! You get a Scratch Card!`; showScratchCard();
+                    } else { diceResultEl.textContent = `You rolled a ${roll}. No scratch card this time. Keep trying!`; }
+                    rollDiceButton.disabled = diceCount <= 0;
                 }
-
-                if (ticketIndex === GRAND_PRIZE_INDEX) {
-                    isGrandPrizeRevealed = true;
-                }
-
-                saveGameState();
-                updateUI(); // Update UI to potentially show the withdrawal section
-
-                const prize = prizes[ticketIndex];
-                setTimeout(() => {
-                     if (prize === "খali") { // Corrected typo here too
-                         alert("দুঃখিত! এই উপহার বক্সে কিছু নেই। আবার চেষ্টা করুন!");
-                     } else {
-                         alert(`অভিনন্দন! আপনি জিতেছেন: ${prize}!`);
-                         if (ticketIndex === GRAND_PRIZE_INDEX) {
-                              alert("আপনি গ্র্যান্ড প্রাইজ জিতেছেন! ২০ জন ইনভাইট সম্পন্ন হলে আপনি এটি দাবি করতে পারবেন।");
-                         }
-                     }
-                }, 100);
-
-            }, revealDelay);
-        }
-
-        async function handleShare() {
-             let referralTicketsEarnedTotalBefore = parseInt(localStorage.getItem(STORAGE_REFERRAL_TICKETS_EARNED_TOTAL) || '0');
-             referralTicketsEarnedTotalBefore = Math.max(referralTicketsEarnedTotalBefore, calculateReferralTicketsEarned(referralCount));
-
-             referralCount += 1;
-
-             const referralTicketsEarnedTotalAfter = calculateReferralTicketsEarned(referralCount);
-             const ticketsEarnedThisClick = referralTicketsEarnedTotalAfter - referralTicketsEarnedTotalBefore;
-             referralTicketsEarnedTotal = referralTicketsEarnedTotalAfter;
-             availableTickets += ticketsEarnedThisClick;
-
-             saveGameState();
-             updateUI();
-
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'ঈদ স্পেশাল উপহার বক্স!',
-                        text: 'আমি এই ঈদ স্পেশাল উপহার বক্স অফার থেকে দারুণ সব পুরস্কার জিতে নিচ্ছি! তুমিও খেলো আর জিতে নাও!\n[এখানে আপনার গেমের লিংক দিন]',
-                        url: window.location.href
-                    });
-                    console.log('Content shared successfully');
-                } catch (error) {
-                    console.error('Error sharing:', error);
-                }
-            } else {
-                const gameUrl = window.location.href;
-                navigator.clipboard.writeText(gameUrl).then(() => {
-                     alert(`শেয়ার অপশন উপলব্ধ নয়। লিংক কপি করা হয়েছে:\n${gameUrl}\nএটি আপনার বন্ধুদের সাথে শেয়ার করুন!`);
-                }).catch(err => {
-                     console.error('Could not copy text: ', err);
-                     alert(`শেয়ার অপশন উপলব্ধ নয়। এই লিংকটি কপি করে শেয়ার করুন:\n${gameUrl}`);
-                });
-            }
-
-             setTimeout(() => {
-                 if (ticketsEarnedThisClick > 0) {
-                      alert(`অভিনন্দন! শেয়ার করার জন্য আপনি ${ticketsEarnedThisClick}টি ফ্রি উপহার বক্স পেয়েছেন!`);
-                 } else {
-                     if (referralCount < REFERRAL_GOAL_FOR_WITHDRAWAL) {
-                          let nextGoal = 0;
-                          if (referralCount < 5) nextGoal = 5;
-                          else if (referralCount < 10) nextGoal = 10;
-                          else if (referralCount < 20) nextGoal = 20;
-
-                          if (nextGoal > referralCount) {
-                             alert(`শেয়ার করার জন্য ধন্যবাদ! আর মাত্র ${nextGoal - referralCount} জন ইনভাইট করলে আরও উপহার বক্স পাবেন।`);
-                          } else {
-                             alert(`শেয়ার করার জন্য ধন্যবাদ!`);
-                          }
-                     } else {
-                         alert(`শেয়ার করার জন্য ধন্যবাদ! আপনার ইনভাইট লক্ষ্য পূরণ হয়েছে।`);
-                     }
-                 }
-             }, 200);
-        }
-
-
-        // Handle click on the Withdrawal Button
-        function handleWithdrawalButtonClick() {
-             // Check if countdown is over first
-             const now = new Date().getTime();
-             if (countdownEndTime && countdownEndTime.getTime() < now) {
-                  alert("উইনিং দাবি করার সময়সীমা শেষ হয়ে গেছে।");
-                  updateCountdownDisplay(); // Ensure display is updated
-                  updateUI(); // Ensure button/form is hidden
-                  return;
-             }
-
-             // Check if referral goal is met
-             if (referralCount < REFERRAL_GOAL_FOR_WITHDRAWAL) {
-                  alert(`গ্র্যান্ড প্রাইজ দাবি করতে আপনাকে অবশ্যই ${REFERRAL_GOAL_FOR_WITHDRAWAL} জন বন্ধুকে ইনভাইট করতে হবে। আপনার বর্তমান ইনভাইট সংখ্যা: ${referralCount} জন।`);
-                  return;
-             }
-
-             // Check if already submitted
-             if (isWithdrawalFormSubmitted) {
-                 alert("আপনার তথ্য ইতিমধ্যেই জমা নেওয়া হয়েছে।");
-                 return;
-             }
-
-             // If checks pass, show the form
-             withdrawalButton.style.display = 'none';
-             withdrawalForm.style.display = 'block';
-             submissionSuccessMessageDiv.classList.add('hidden');
-        }
-
-        // Handle form submission
-        function handleSubmitWithdrawal(event) {
-            event.preventDefault();
-
-             // Check if countdown is over again before submitting
-             const now = new Date().getTime();
-             if (countdownEndTime && countdownEndTime.getTime() < now) {
-                  alert("উইনিং দাবি করার সময়সীমা শেষ হয়ে গেছে। আপনার তথ্য জমা নেওয়া যাচ্ছে না।");
-                  updateCountdownDisplay();
-                  updateUI(); // Hide form/button and show closed message
-                  return;
-             }
-
-            const name = userNameInput.value.trim();
-            const country = userCountrySelect.value;
-            const address = userAddressInput.value.trim();
-            const gmail = userGmailInput.value.trim();
-
-            // Basic Validation
-            if (!name || !country || !address || !gmail) {
-                alert("অনুগ্রহ করে সমস্ত তথ্য পূরণ করুন।");
-                return;
-            }
-             if (!/\S+@\S+\.\S+/.test(gmail)) {
-                 alert("একটি সঠিক ইমেইল ঠিকানা দিন।");
-                 return;
-             }
-
-            // Simulate submission success
-            console.log("Submitted Withdrawal Data:");
-            console.log("Name:", name);
-            console.log("Country:", country);
-            console.log("Address:", address);
-            console.log("Gmail:", gmail);
-
-            // Mark as submitted
-            isWithdrawalFormSubmitted = true;
-            saveGameState();
-
-            // Hide form, show success message
-            withdrawalForm.style.display = 'none';
-            submissionSuccessMessageDiv.classList.remove('hidden');
-
-            // Disable form fields
-            userNameInput.disabled = true;
-            userCountrySelect.disabled = true;
-            userAddressInput.disabled = true;
-            userGmailInput.disabled = true;
-            submitWithdrawalButton.disabled = true;
-
-             // Remove any previous 'submission closed' message if it exists
-             const existingClosedMsg = document.getElementById('submissionClosedMessage');
-             if(existingClosedMsg) existingClosedMsg.remove();
-        }
-
-
-        // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            loadGameState(); // Load state on page load
-            startCountdown(); // Start the timer immediately after loading state
-            updateUI(); // Update UI based on loaded state
-
-            // Start the direct link timer
-            startDirectLinkTimer();
-
-            // Add event listeners
-            shareButton.addEventListener('click', handleShare);
-            withdrawalButton.addEventListener('click', handleWithdrawalButtonClick);
-            submitWithdrawalButton.addEventListener('click', handleSubmitWithdrawal);
-
+            }, 100);
         });
 
-    </script>
+        // --- Scratch Card ---
+        let scratchCardRevealed = false, scratchIsScratching = false;
+        function setupScratchCardSurface() {
+            scratchCtx.globalCompositeOperation = 'source-over'; scratchCtx.fillStyle = '#bdc3c7'; scratchCtx.fillRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+            scratchCtx.font = 'bold 18px Arial'; scratchCtx.fillStyle = '#2c3e50'; scratchCtx.textAlign = 'center'; scratchCtx.textBaseline = 'middle';
+            scratchCtx.fillText('SCRATCH HERE', scratchCanvas.width / 2, scratchCanvas.height / 2); scratchCardRevealed = false;
+        }
+        function getScratchPos(canvasElem, event) {
+            const rect = canvasElem.getBoundingClientRect();
+            if (event.touches && event.touches.length > 0) { return { x: event.touches[0].clientX - rect.left, y: event.touches[0].clientY - rect.top }; }
+            return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+        }
+        function scratchDraw(e) {
+            if (!scratchIsScratching) return; const pos = getScratchPos(scratchCanvas, e);
+            scratchCtx.globalCompositeOperation = 'destination-out'; scratchCtx.beginPath(); scratchCtx.arc(pos.x, pos.y, 15, 0, Math.PI * 2, false); scratchCtx.fill();
+            e.preventDefault(); // Important for touchmove
+        }
+        scratchCanvas.addEventListener('mousedown', (e) => { scratchIsScratching = true; scratchDraw(e); });
+        scratchCanvas.addEventListener('touchstart', (e) => { scratchIsScratching = true; scratchDraw(e); });
+        scratchCanvas.addEventListener('mousemove', scratchDraw);
+        scratchCanvas.addEventListener('touchmove', scratchDraw);
+        scratchCanvas.addEventListener('mouseup', () => { scratchIsScratching = false; checkScratchCardProgress(); });
+        scratchCanvas.addEventListener('touchend', () => { scratchIsScratching = false; checkScratchCardProgress(); });
+        scratchCanvas.addEventListener('mouseleave', () => { if(scratchIsScratching) {scratchIsScratching = false; checkScratchCardProgress();} });
+        function checkScratchCardProgress() {
+            if (scratchCardRevealed) return; const imageData = scratchCtx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height);
+            const pixels = imageData.data; let transparentPixels = 0;
+            for (let i = 3; i < pixels.length; i += 4) { if (pixels[i] < 128) { transparentPixels++; } }
+            if (transparentPixels / (scratchCanvas.width * scratchCanvas.height) > 0.7) {
+                scratchCardRevealed = true; scratchCtx.clearRect(0, 0, scratchCanvas.width, scratchCanvas.height); processScratchCardResult();
+            }
+        }
+        function showScratchCard() {
+            scratchCardArea.style.display = 'block'; setupScratchCardSurface();
+            const isWin = Math.random() < 0.15; // 15% win
+            if (isWin) {
+                const selectedPrize = prizeListForJS[Math.floor(Math.random() * prizeListForJS.length)];
+                scratchContentBehindEl.innerHTML = `🥳 Congratulations! <br>You won: <br><strong>${selectedPrize.name}</strong>`;
+                scratchCardArea.dataset.prizeName = selectedPrize.name; scratchCardArea.dataset.prizeIsGrand = selectedPrize.isGrand;
+            } else { scratchContentBehindEl.innerHTML = `😢 Sorry, an Empty Box! 🎁 <br>Better luck next time!`; scratchCardArea.dataset.prizeName = "empty"; }
+        }
+        function processScratchCardResult() {
+            const prizeName = scratchCardArea.dataset.prizeName;
+            if (prizeName && prizeName !== "empty") { setTimeout(() => { hideScratchCard(); displayWin({name: prizeName, isGrand: scratchCardArea.dataset.prizeIsGrand === "true"}); }, 1500); }
+            else { setTimeout(() => { hideScratchCard(); }, 2500); }
+        }
+        function hideScratchCard() { scratchCardArea.style.display = 'none'; }
 
+        // --- Winning Display ---
+        function displayWin(prize) {
+            prizeDisplayArea.style.display = 'block'; prizeWonTextEl.innerHTML = `You've Won: <br><strong>${prize.name}</strong>`; triggerFireworks(prizeDisplayArea);
+            collectPrizeForm.style.display = 'block'; collectUserNameInput.value = ''; collectUserEmailInput.value = ''; collectUserPhoneInput.value = ''; collectUserAddressInput.value = '';
+            formMessageEl.textContent = '';
+        }
+        function triggerFireworks(container) {
+            const existing = container.querySelectorAll('.firework-particle'); existing.forEach(p=>p.remove());
+            for (let i=0; i<30; i++) {
+                const p=document.createElement('div'); p.classList.add('firework-particle');
+                const colors=['gold','red','#0f0','blue','purple','orange','pink']; p.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+                p.style.left='50%'; p.style.top='50%'; const angle=Math.random()*2*Math.PI; const dist=Math.random()*120+80;
+                p.style.setProperty('--tx',(Math.cos(angle)*dist)+'px'); p.style.setProperty('--ty',(Math.sin(angle)*dist)+'px');
+                p.style.animationDelay=(Math.random()*0.3)+'s'; container.appendChild(p); p.addEventListener('animationend',()=>p.remove());
+            }
+        }
+        submitContactButton.addEventListener('click', () => {
+            const name = collectUserNameInput.value.trim(), email = collectUserEmailInput.value.trim();
+            const phone = collectUserPhoneInput.value.trim(), address = collectUserAddressInput.value.trim();
+            if (name && (email || phone) && address) {
+                formMessageEl.textContent = "Thank you! Your details have been submitted."; formMessageEl.style.color = "#2ecc71";
+                setTimeout(() => { collectPrizeForm.style.display = 'none'; prizeDisplayArea.style.display = 'none'; formMessageEl.textContent = ''; }, 3500);
+            } else { formMessageEl.textContent = "Please fill all fields: Name, Address, and Email or Phone."; formMessageEl.style.color = "red"; setTimeout(() => { formMessageEl.textContent = ''; }, 3000); }
+        });
+
+        // --- Runner Game (Shadow Man) ---
+        function drawPlayer() { 
+            runnerGameCtx.fillStyle = player.color;
+            runnerGameCtx.fillRect(player.x, player.y, player.width, player.height);
+        }
+        function drawGroundLine() { runnerGameCtx.fillStyle = '#3a2e29'; runnerGameCtx.fillRect(0, GROUND_Y, runnerGameCanvas.width, runnerGameCanvas.height - GROUND_Y); }
+        function drawPlayerObstacles() {
+            runnerGameCtx.fillStyle = '#2ecc71'; // Green for obstacles
+            playerObstacles.forEach(obstacle => { runnerGameCtx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height); });
+        }
+        function updatePlayer() {
+            player.y += player.dy; player.dy += player.gravity; player.onGround = false;
+            if (player.y + player.height >= GROUND_Y) { player.y = GROUND_Y - player.height; player.dy = 0; player.isJumping = false; player.onGround = true; }
+        }
+        function updatePlayerObstacles() {
+            playerObstacleSpawnTimer++;
+            if (playerObstacleSpawnTimer >= currentPlayerObstacleSpawnInterval) {
+                playerObstacleSpawnTimer = 0;
+                const obsHeight = Math.random() * (player.height - 10) + 15; // Obstacle height relative to player
+                const obsWidth = Math.random() * 8 + 12;
+                playerObstacles.push({ x: runnerGameCanvas.width, y: GROUND_Y - obsHeight, width: obsWidth, height: obsHeight });
+                if (currentPlayerObstacleSpawnInterval > 120) currentPlayerObstacleSpawnInterval -= 0.3; // Slower decrease
+                if (playerObstacleSpeed < 2.8) playerObstacleSpeed += 0.003; // Slower increase
+            }
+            playerObstacles.forEach(obstacle => obstacle.x -= playerObstacleSpeed);
+            if (playerObstacles.length > 0 && playerObstacles[0].x + playerObstacles[0].width < 0) {
+                playerObstacles.shift(); runnerGameScore += 100; runnerGameScoreDisplayEl.textContent = runnerGameScore;
+                if (runnerGameScore > 0 && runnerGameScore % PLAYER_GAME_SCORE_MILESTONE === 0) {
+                    diceCount += PLAYER_GAME_DICE_REWARD; updateDiceCountUI();
+                    runnerGameStatusEl.textContent = `🎉 ${PLAYER_GAME_DICE_REWARD} Dice earned! Keep going!`;
+                    setTimeout(()=> { if(runnerGameActive) runnerGameStatusEl.textContent = "Game in progress..."; }, 2000);
+                }
+            }
+        }
+        function checkPlayerCollisions() {
+            for (let obstacle of playerObstacles) {
+                if (player.x < obstacle.x + obstacle.width && player.x + player.width > obstacle.x &&
+                    player.y < obstacle.y + obstacle.height && player.y + player.height > obstacle.y) { return true; }
+            } return false;
+        }
+        function playerGameLoop() {
+            if (!runnerGameActive) return;
+            updateParallaxBackground(); drawParallaxBackground(); drawGroundLine();
+            updatePlayer(); updatePlayerObstacles(); drawPlayer(); drawPlayerObstacles();
+            if (checkPlayerCollisions()) {
+                runnerGameStatusEl.textContent = `Game Over! Score: ${runnerGameScore}. Click "Start Game" to try again.`;
+                runnerGameActive = false; startRunnerGameButton.disabled = false; cancelAnimationFrame(runnerGameLoopId); return;
+            }
+            runnerGameLoopId = requestAnimationFrame(playerGameLoop);
+        }
+        startRunnerGameButton.addEventListener('click', () => {
+            if (runnerGameActive) return; runnerGameActive = true; startRunnerGameButton.disabled = true;
+            runnerGameStatusEl.textContent = "Game in progress... Press Space or Tap to Jump!";
+            player.y = GROUND_Y - player.height; player.dy = 0; player.isJumping = false; player.onGround = true;
+            playerObstacles.length = 0; runnerGameScore = 0; runnerGameScoreDisplayEl.textContent = runnerGameScore;
+            playerObstacleSpawnTimer = 0; currentPlayerObstacleSpawnInterval = PLAYER_OBSTACLE_SPAWN_INTERVAL_INITIAL;
+            playerObstacleSpeed = 1.5; // Reset speed
+            initParallaxLayers();
+            if(runnerGameLoopId) cancelAnimationFrame(runnerGameLoopId);
+            runnerGameLoopId = requestAnimationFrame(playerGameLoop);
+        });
+        function playerJump() { if (runnerGameActive && player.onGround) { player.isJumping = true; player.onGround = false; player.dy = player.jumpPower; } }
+        document.addEventListener('keydown', (e) => { if (e.code === 'Space') { playerJump(); e.preventDefault();} });
+        runnerGameCanvas.addEventListener('click', playerJump);
+        runnerGameCanvas.addEventListener('touchstart', (e) => { playerJump(); e.preventDefault(); });
+
+        // --- Referral System ---
+        function renderReferralTiers() {
+            referralSectionEl.innerHTML = '<h3>2. Refer Friends for Dice</h3>';
+            referralTiersForJS.forEach(tier => {
+                const d = document.createElement('div'); d.className = 'referral-tier'; d.id = `tier-${tier.id}`;
+                let c = `Invite ${tier.friends} Friends to get ${tier.dice} Dice.`;
+                const ib = document.createElement('button'); ib.textContent = `Simulate Invite ${tier.friends}`; ib.dataset.tierId=tier.id; ib.onclick=handleInviteSimulation;
+                const cb = document.createElement('button'); cb.textContent=`Claim ${tier.dice} Dice`; cb.dataset.tierId=tier.id; cb.dataset.dice=tier.dice; cb.className='claim-dice-button'; cb.style.display='none'; cb.onclick=handleClaimReferralDice;
+                if (claimedReferrals[tier.id]) {c+=` (Claimed ${tier.dice} Dice)`; ib.disabled=true; cb.style.display='none';}
+                else if (sessionStorage.getItem(`invited-${tier.id}`)) {ib.disabled=true; cb.style.display='inline-block';}
+                d.innerHTML = `<p>${c}</p>`; d.appendChild(ib); d.appendChild(cb); referralSectionEl.appendChild(d);
+            });
+        }
+        function handleInviteSimulation(event) {
+            const tierId=event.target.dataset.tierId; event.target.disabled=true; sessionStorage.setItem(`invited-${tierId}`,'true');
+            const cb=document.querySelector(`#tier-${tierId} .claim-dice-button`); if(cb) cb.style.display='inline-block';
+            alert(`Simulation: You've "invited" enough friends for the ${tierId.replace('ref','')} friends tier. Now claim your dice!`);
+        }
+        function handleClaimReferralDice(event) {
+            const tierId=event.target.dataset.tierId; const diceToAdd=parseInt(event.target.dataset.dice);
+            if (!claimedReferrals[tierId]) {
+                diceCount+=diceToAdd; claimedReferrals[tierId]=true; sessionStorage.removeItem(`invited-${tierId}`); updateDiceCountUI();
+                alert(`You claimed ${diceToAdd} dice!`); event.target.disabled=true; event.target.textContent=`Claimed ${diceToAdd} Dice`;
+                const p=document.querySelector(`#tier-${tierId} p`); if(p) p.innerHTML = p.innerHTML.split('.')[0] + `. (Claimed ${diceToAdd} Dice)`;
+                const ib=document.querySelector(`#tier-${tierId} button:not(.claim-dice-button)`); if(ib) ib.disabled=true;
+            } else { alert("Already claimed for this tier."); }
+        }
+
+        // --- Share & Modal Logic ---
+        shareButton.addEventListener('click', () => {
+            const shareData = { title: 'EID SPECIAL EVENT - Win Big!', text: 'Join the Eid Special Event! Play, roll dice, win amazing prizes!', url: window.location.href };
+            if (navigator.share) { navigator.share(shareData).catch(e => console.log('Error sharing:', e)); }
+            else { alert("Share this link:\n" + window.location.href + "\n\n" + shareData.text); }
+        });
+        openPrizeRegistrationModalButton.addEventListener('click', () => { userReceivedPrizeModal.style.display = 'block'; userReceivedFormMessageEl.textContent = ''; });
+        closeUserReceivedModalButton.addEventListener('click', () => { userReceivedPrizeModal.style.display = 'none'; });
+        window.addEventListener('click', (event) => { if (event.target == userReceivedPrizeModal) { userReceivedPrizeModal.style.display = 'none'; } });
+        submitRegistrationButton.addEventListener('click', () => {
+            const name = regUserNameInput.value.trim(), email = regUserEmailInput.value.trim();
+            const phone = regUserPhoneInput.value.trim(), address = regUserAddressInput.value.trim();
+            if (name && address && (email || phone)) {
+                userReceivedFormMessageEl.textContent = "Thank you for registering!"; userReceivedFormMessageEl.style.color = "#2ecc71";
+                regUserNameInput.value=''; regUserEmailInput.value=''; regUserPhoneInput.value=''; regUserAddressInput.value='';
+                setTimeout(() => { userReceivedPrizeModal.style.display = 'none'; userReceivedFormMessageEl.textContent = ''; }, 2500);
+            } else { userReceivedFormMessageEl.textContent = "Please fill all fields: Name, Address, and Email or Phone."; userReceivedFormMessageEl.style.color = "red"; setTimeout(() => { userReceivedFormMessageEl.textContent = ''; }, 3000); }
+        });
+        
+        // --- Initial Setup ---
+        function initApp() {
+            console.log("Initializing App...");
+            updateDiceCountUI();
+            startCountdown();
+            populateWinnersList();
+            renderReferralTiers();
+            console.log("App Initialized.");
+        }
+        
+        // Ensure DOM is ready before running init
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
+
+    </script>
 </body>
 </html>
