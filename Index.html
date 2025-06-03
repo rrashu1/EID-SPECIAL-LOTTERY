@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayAdse Bot UI</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .invite-section {
+            background-color: #28a745; /* Green color */
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .invite-section h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+        .invite-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .invite-section li {
+            margin-bottom: 10px;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+        }
+        .invite-section li span {
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .section h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 1.5em; /* Adjust icon size as needed */
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block; /* Make button full width */
+            width: 100%;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .ads-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .ads-count {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .totals-section p {
+            font-size: 1.1em;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .totals-section p span {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Invite Friends & Earn Section -->
+        <div class="invite-section">
+            <h2><span class="icon">🎁</span> Invite Friends & Earn!</h2>
+            <ul>
+                <li><span>1</span> Share your referral link</li>
+                <li><span>2</span> Friends join through your link</li>
+                <li><span>3</span> They watch their first ad</li>
+                <li><span>4</span> You earn $0.0200 USDT!</li>
+            </ul>
+        </div>
+
+        <!-- Daily Reward Section -->
+        <div class="section">
+            <h3><span class="icon">🎁</span> Daily Reward</h3>
+            <button class="button" id="claimDailyRewardBtn">Claim Daily Reward</button>
+            <!-- Placeholder for reward status, e.g., "Claimed" or "Available in X hours" -->
+            <p id="dailyRewardStatus" style="text-align:center; margin-top:10px; font-size:0.9em;"></p>
+        </div>
+
+        <!-- Watch Ads - Method 1 Section -->
+        <div class="section">
+            <div class="ads-info">
+                <h3><span class="icon">📺</span> Watch Ads - Method 1</h3>
+                <span class="ads-count" id="adsCount1">0 / 40</span>
+            </div>
+            <p style="font-size:0.85em; color:#666;">Earn $0.0003 USDT per ad.</p>
+            <button class="button" id="watchAdBtn1">Watch Ad</button>
+        </div>
+
+        <!-- Watch Ads - Method 2 Section -->
+        <div class="section">
+            <div class="ads-info">
+                <h3><span class="icon">📺</span> Watch Ads - Method 2</h3>
+                <span class="ads-count" id="adsCount2">0 / 40</span>
+            </div>
+            <p style="font-size:0.85em; color:#666;">Earn $0.0003 USDT per ad.</p>
+            <button class="button" id="watchAdBtn2">Watch Ad</button>
+        </div>
+
+        <!-- Watch Ads - Method 3 Section -->
+        <div class="section">
+            <div class="ads-info">
+                <h3><span class="icon">📺</span> Watch Ads - Method 3</h3>
+                <span class="ads-count" id="adsCount3">0 / 40</span>
+            </div>
+            <p style="font-size:0.85em; color:#666;">Earn $0.0003 USDT per ad.</p>
+            <button class="button" id="watchAdBtn3">Watch Ad</button>
+        </div>
+
+        <!-- Totals Section -->
+        <div class="section totals-section">
+            <h3><span class="icon">📊</span> Totals</h3>
+            <p>Total Referrals: <span id="totalReferrals">0</span></p>
+            <p>Total Earnings: <span id="totalEarnings">$0.0000 USDT</span></p>
+            <p style="font-size:0.9em; color:#555;">Bot: @PlayAdse_Bot</p>
+        </div>
+    </div>
+
+    <script>
+        // Basic JavaScript to demonstrate interaction (optional, for testing)
+        // In a real bot, this logic would be handled by your bot backend
+        // and the UI would be updated via messages from the bot.
+
+        // Example: Update daily reward status
+        const dailyRewardStatusEl = document.getElementById('dailyRewardStatus');
+        if (dailyRewardStatusEl) {
+            // dailyRewardStatusEl.textContent = "Claimed today!";
+            // dailyRewardStatusEl.textContent = "Available in 10h 30m";
+        }
+
+        // Example: Update ad counts (replace with actual data from bot)
+        const adsCount1El = document.getElementById('adsCount1');
+        const adsCount2El = document.getElementById('adsCount2');
+        const adsCount3El = document.getElementById('adsCount3');
+
+        if (adsCount1El) adsCount1El.textContent = "5 / 40"; // Example
+        if (adsCount2El) adsCount2El.textContent = "12 / 40"; // Example
+        if (adsCount3El) adsCount3El.textContent = "0 / 40"; // Example
+
+
+        // Example: Update totals (replace with actual data from bot)
+        const totalReferralsEl = document.getElementById('totalReferrals');
+        const totalEarningsEl = document.getElementById('totalEarnings');
+
+        if (totalReferralsEl) totalReferralsEl.textContent = "15"; // Example
+        if (totalEarningsEl) totalEarningsEl.textContent = "$0.1234 USDT"; // Example
+
+        // Button click handlers (these would typically send a command to your bot)
+        document.getElementById('claimDailyRewardBtn')?.addEventListener('click', () => {
+            alert('Claim Daily Reward button clicked! (This would interact with the bot)');
+            // Here you'd send a callback_query or command to your bot
+        });
+
+        document.getElementById('watchAdBtn1')?.addEventListener('click', () => {
+            alert('Watch Ad Method 1 button clicked! (This would interact with the bot)');
+        });
+        document.getElementById('watchAdBtn2')?.addEventListener('click', () => {
+            alert('Watch Ad Method 2 button clicked! (This would interact with the bot)');
+        });
+        document.getElementById('watchAdBtn3')?.addEventListener('click', () => {
+            alert('Watch Ad Method 3 button clicked! (This would interact with the bot)');
+        });
+
+    </script>
+</body>
+</html>
